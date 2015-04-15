@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jeuxVideo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="jv.xsd"> 
+    <jeu> 
+        <titre>League Of Legends</titre> 
+        <societes>
+            <societe activite="editeur"></societe>
+            <societe activite="developpeur">Riot Games</societe>  
+        </societes> 
+        <genres> 
+            <genre>MOBA</genre> 
+            <genre>RPG</genre> 
+            <genre>Fantasy</genre> 
+        </genres> 
+        <liens> 
+            <lien type="siteOfficiel">http://euw.leagueoflegends.com</lien>  
+        </liens> 
+        <modeJeu>FREE TO PLAY</modeJeu> 
+        <description>Inspiré du mod DotA (Defense of the Ancients) de Warcraft III, League of Legends est un MOBA, une arène de bataille en ligne multijoueur. Dans le mode classique, deux équipes de cinq joueurs s'affrontent dans des parties qui durent en moyenne entre 40 minutes et dont l'objectif est de détruire la base ennemie. Évoluant dans un univers heroic-fantasy, chaque joueur incarne un champion différent, aux capacités uniques, qu'il choisit à chaque début de partie. Des modes aléatoires sont également présents, ainsi que des événements saisonniers qui apportent un souffle de nouveauté.</description> 
+        <plateformes> 
+            <plateforme type="PC" > 
+              <resume>N.C</resume> 
+               <dateSortie>2009-10-11</dateSortie> 
+                <prices> 
+                    <price vendeur="Riot Games" type="neuf" devise="euros">0</price> 
+                </prices> 
+                <notes>
+                    <notation source="presse">16</notation> 
+                </notes>
+                <pegi>12</pegi> 
+                <points> 
+                    <point type="positif">Gratuit</point>
+                    <point type="positif">Multijoueur</point> 
+                    <point type="positif">Facile à prendre en mains</point> 
+                    <point type="negatif">Accès uniquement Online</point>
+                    <point type="negatif">Options payantes</point> 
+                </points> 
+                <medias> 
+                    <media type="image" cible="cover"> 
+                        <libelle>Couverture</libelle> 
+                        <url>http://image.jeuxvideo.com/images-xs/jaquettes/00027602/jaquette-league-of-legends-pc-cover-avant-g.jpg</url> 
+                        <alt>League of legends</alt> 
+                    </media>
+                    <media type="video" cible="ba"> 
+                        <libelle>Ouverture des LCS</libelle> 
+                        <url>https://www.youtube.com/watch?v=l9-2Jnu_QLI</url> 
+                        <alt>Bande Annonce des LCS saison 1</alt> 
+                    </media>  
+                </medias> 
+                <commentaires> 
+                    <commentaire> 
+                        <auteur>JeanPile</auteur> 
+                        <date>2014-01-14T12:05:00</date> 
+                        <note>2</note> 
+                        <contenu>cay trop nul je joue tou seul est persone ne m'm. pa dami est les gens son méchan</contenu> 
+                    </commentaire> 
+                </commentaires> 
+                <configurationsPc>
+                	<configurationPc type="minimum"> 
+                        <systeme>windows</systeme> 
+                        <ram>8 Go</ram> 
+                        <disqueDur>50 Go</disqueDur> 
+                        <cpu>2,4 GHz</cpu> 
+                        <gpu>2 Go</gpu> 
+                        <connexion>8 Mo</connexion> 
+                        <directX>11</directX> 
+                    </configurationPc>
+                </configurationsPc> 
+                <langues> 
+                    <audios>
+                        <audio></audio>
+                    </audios>
+                    <sousTitres>
+                        <sousTitre></sousTitre>
+                    </sousTitres>
+                </langues> 
+                <astuces> 
+                    <astuce></astuce> 
+                </astuces> 
+                <jeuxSimilaires> 
+                    <jeuSimilaire> 
+                        <libelleJeu></libelleJeu> 
+                        <urlJeu></urlJeu> 
+                    </jeuSimilaire> 
+                </jeuxSimilaires> 
+            </plateforme> 
+        </plateformes> 
+
+        <!-- lien vers les pages fb ou twitter du jeu --> 
+
+        <socialLinks> 
+            <socialLink type="Facebook"> 
+            </socialLink> 
+        </socialLinks> 
+    </jeu> 
+</jeuxVideo> 
