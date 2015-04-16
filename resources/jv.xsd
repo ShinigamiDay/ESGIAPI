@@ -243,7 +243,7 @@
 													<xsd:element name="configurationsPc">
 														<xsd:complexType>
 															<xsd:sequence>
-																<xsd:element ref="configurationPc" maxOccurs="unbounded"/>
+																<xsd:element ref="configurationPc" minOccurs="0" maxOccurs="unbounded"/>
 															</xsd:sequence>
 														</xsd:complexType>
 													</xsd:element>
