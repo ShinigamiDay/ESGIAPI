@@ -1,7 +1,7 @@
 1er étape : réalisation de la BDD (user)
 -> 3 jeux en BDD
 2ème étape : Conception du fichier XML
-3ème étape : Validation avec le sxd
+3ème étape : Validation avec le xsd
  
 API :
 > Routing
