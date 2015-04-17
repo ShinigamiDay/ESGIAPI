@@ -1,0 +1,16 @@
+INSERT INTO `platform` (`ID`, `NAME`) VALUES
+(1, 'PS2'),
+(2, 'PS3'),
+(3, 'PS4'),
+(4, 'XBOX'),
+(5, 'XBOX 360'),
+(6, 'Wii'),
+(7, 'Wii U'),
+(8, 'Gameboy color'),
+(9, 'DS'),
+(10, 'DS XXL'),
+(11, 'Mobile'),
+(12, 'PC'),
+(13, 'Sega'),
+(14, 'Gamecube'),
+(15, 'Nintendo 64');
