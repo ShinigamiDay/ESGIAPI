@@ -30,131 +30,181 @@ public static function verify() {
 public function videoGamesXML($stmt) {
 
 // Racine Element XML
-	$games = $doc = new SimpleXMLElement("<jeuxVideo></jeuxVideo>");
-	
+	$games = new SimpleXMLElement("<jeuxVideo></jeuxVideo>");
+
 	// For each video games ...
 	foreach ($stmt as $row) {
 	// Create a node game
-	    $game = $doc->createElement('jeu');
+	    $game = $games->addChild('jeu');
 	    // Add in game node title element
-	    $game->appendChild($doc->createElement('titre', $row['title']));
+	    $game->addChild('titre', $row['title']);
 
 	    // Companies element on game node
-	    $companies = $doc->createElement('societes');
+	    $companies = $game->addChild('societes');
 	    // For each company, create a node company with an attribute activite
 	    foreach ($row['company'] as $companyDB) {
-	    	$company = $doc->createElement('societe', $companyDB);
+	    	$company = $companies->addChild('societe', $companyDB);
 	    	//TODO: Activity.
 	    	$company->setAttribute('activite', $companyDB['activity']);
-	    	$companies->appendChild($company);
 	    }
-	    // Add companies in game node
-	    $game->appendChild($companies);
 
 		// Genres video games in game node
-	    $genres = $doc->createElement('genres');
+	    $genres = $game->addChild('genres');
 	    foreach ($row['genre'] as $genreDB) {
-	    	$genres->appendChild($doc->createElement('genre', $genreDB));
+	    	$genres->addChild('genre', $genreDB);
 	    }
-	    // Add genres to node game
-	    $game->appendChild($genres);
 	    
 	    // Links Node in game
-	    $links = $doc->createElement('liens');
+	    $links = $game->addChild('liens');
 	    foreach ($row['link'] as $linkDB) {
-	    	$link = $doc->createElement('lien', $linkDB);
+	    	$link = $links->addChild('lien', $linkDB['link']);
 	    	$link->setAttribute('type', $linkDB['type']);
-	    	$links->appendChild($link);
 	    }
-	    // Add links to game node
-	    $game->appendChild($links);
 
 	    // Mode Game
-	    $modesGames = $doc->createElement('modesJeu');
+	    $modesGames = $game->addChild('modesJeu');
 	    foreach ($row['modeGames'] as $modesDB) {
-	    	$modesGames->appendChild($doc->createElement('modeJeu', $modesDB));
+	    	$modesGames->addChild('modeJeu', $modesDB);
 	    }
-	    // Add mode game to game node
-	    $game->appendChild($modesGames);
 
 	    // Description node in game node
-	    $game->appendChild($doc->createElement('description', $row['description'])); 
+	    $game->addChild('description', $row['description']); 
 
 	    // Plateformes in game node
-	    $platforms = $doc->createElement('plateformes');
+	    $platforms = $game->addChild('plateformes');
 	    foreach ($row['platforms'] as $platformDB) {
 	    	// create platform
-	    	$platform = $doc->createElement('plateforme');
+	    	$platform = $platforms->addChild('plateforme');
 	    	// set attribute "type" to platform
 	    	$platform->setAttribute('type', $platformDB['type']);
 
 	    // Create resume node to platform node
-	    	$platform->appendChild($doc->createElement('resume', $platformDB['resume']));
+	    	$platform->addChild('resume', $platformDB['resume']);
 	    // Create Release date node to platform node
-	    	$platform->appendChild($doc->createElement('dateSortie', $platformDB['releaseDate']));
+	    	$platform->addChild('dateSortie', $platformDB['releaseDate']);
 	    // Create node prices containes multiple price
-	    	$prices = $doc->createElement('prix');
+	    	$prices = $platform->addChild('prix');
 	    	foreach ($platformDB['prices'] as $priceDB) {
-	    		$price = $doc->createElement('price', $priceDB['price']);
+	    		$price = $prices->addChild('price', $priceDB['price']);
 	    		$price->setAttribute('vendeur', $priceDB['seller']);
 	    		$price->setAttribute('type', $priceDB['type']);
 	    		$price->setAttribute('devise', $priceDB['currency']);
-
-	    		// add price to prices node
-	    		$prices->appendChild($price);
 	    	}
-	    	// add prices to platform node
-	    	$platform->appendChild($price);
 
 		// Create node notes containes multiple note
-	    	$scores = $doc->createElement('notes');
+	    	$scores = $platform->addChild('notes');
 	    	foreach ($platformDB['scores'] as $scoreDB) {
-	    		$score = $doc->createElement('score', $scoreDB['score']);
+	    		$score = $scores->addChild('score', $scoreDB['score']);
 	    		$score->setAttribute('source', $priceDB['source']);
-
-	    		// add score to scores node
-	    		$scores->appendChild($score);
 	    	}
-	    	// add scores to platform node
-	    	$platform->appendChild($scores);
 
 	    // Create pegi node
-	    	$platform->appendChild($doc->createElement('pegi', $platformDB['pegi']));
+	    	$platform->addChild('pegi', $platformDB['pegi']);
 
 	    // Create points node
-	    	$points = $doc->createElement('points');
+	    	$points = $platform->addChild('points');
 	    	foreach ($platformDB['points'] as $pointDB) {
-	    		$point = $doc->createElement('point', $pointDB['point']);
+	    		$point = $points->addChild('point', $pointDB['point']);
 	    		$point->setAttribute('type', $pointDB['type']);
-
-	    		// add point to points node
-	    		$points->appendChild($point);
 	    	}
-	    	// add points to platform node
-	    	$platform->appendChild($points);	    	
+
+	    // Create Medias nodes
+	    	$medias = $platform->addChild('medias');
+	    	foreach ($platformDB['medias'] as $mediaDB) {
+	    		$media = $medias->addChild('media');
+	    		$media->setAttribute('type', $mediaDB['type']);
+	    		$media->setAttribute('cible', $mediaDB['target']);
+
+	    		// Add libele to media node.
+	    		$media->addChild('libelle', $mediaDB['libelle']);
+	    		$media->addChild('url', $mediaDB['url']);
+	    		$media->addChild('alt', $mediaDB['alt']);
+	    	}
+
+	    // Create Comments nodes
+	    	$commentaires = $platform->addChild('commentaires');
+	    	foreach ($platformDB['commentaires'] as $commentaireDB) {
+	    		$commentaire = $commentaires->addChild('commentaire');
+
+	    		// Add author, date, note and content to comment node.
+	    		$commentaire->addChild('auteur', $commentaireDB['author']);
+	    		$commentaire->addChild('date', $commentaireDB['date']);
+	    		$commentaire->addChild('note', $commentaireDB['note']);
+	    		$commentaire->addChild('contenu', $commentaireDB['content']);
+	    	}
+
+	    // Create configurations nodes
+	    	$configurations = $platform->addChild('configurationsPc');
+	    	foreach ($platformDB['configurations'] as $configDB) {
+	    		$config = $configurations->addChild('configurationPC');
+	    		$config->setAttribute('type', $configDB['type']);
+
+	    		// Add author, date, note and content to comment node.
+	    		$config->addChild('systeme', $configDB['system']);
+	    		$config->addChild('ram', $configDB['ram']);
+	    		$config->addChild('disqueDur', $configDB['disk']);
+	    		$config->addChild('cpu', $configDB['cpu']);
+	    		$config->addChild('gpu', $configDB['gpu']);
+	    		$config->addChild('connexion', $configDB['connection']);
+	    		$config->addChild('directX', $configDB['directX']);
+	    	}
+
+	    // Create lang nodes
+	    	$languages = $platform->addChild('langues');
+	    	foreach ($platformDB['languages'] as $langDB) {
+
+	    		// Audios
+	    		$audios = $languages->addChild('audios');
+	    		foreach ($langDB['audios'] as $audioDB) {
+	    			$audios->addChild('audio', $audioDB);
+	    		}
+	    		
+	    		// Subtitles
+	    		$subtitles = $languages->addChild('sousTitres');
+	    		foreach ($langDB['subtitles'] as $subtitleDB) {
+	    			$audios->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);
+	    		}
+	    	}
+
+	    	// Tips node
+	    	$tips = $platform->addChild('astuces');
+	    	foreach ($platform['tricks'] as $trickDB) {
+	    		$tips->addChild('astuce', $trickDB['LABELMEDIA']);
+	    	}
+
+	    	// Similar game node
+	    	$similarGames = $platform->addChild('jeuxSimilaires');
+	    	foreach ($platform['similarGame'] as $similarGameDB) {
+	    		$tip = $tips->addChild('jeuSimilaire', $similarGameDB['LABELMEDIA']);
+
+	    		$tip->addChild('libelleJeu', $similarGameDB['LABELMEDIA']);
+	    		$tip->addChild('urlJeu', $similarGameDB['LABELMEDIA']);
 
 
-	    	// add platform to platforms node
-	    	$platforms->appendChild($platform);
+	    	}
+
+	    	$socialLinks = $game->addChild('socialLinks');
+	    	foreach ($row['social'] as $socialDB) {
+	    		$social = $socialLinks->addChild('socialLink');
+	    		$social->setAttribute('type', $socialDB);
+	    	}
+	    	
+	    		    	
 	    }
-	    // Add platforms to game node
-	    $game->appendChild($platforms);
 
 	    // and next comming soon. Stay tuned.
 	    
 	    /*
 	    // CDATA sections are slightly different
-	    $description = $doc->createElement('description');
-	    $description->appendChild($doc->createCDATASection($row['description']));
+	    $description = $games->createElement('description');
+	    $description->appendChild($games->createCDATASection($row['description']));
 	    $game->appendChild($description);
 	    */
 
-	    $games->appendChild($game);
 	}
-
-	$doc->appendChild($games);
 
 	// Set the appropriate content-type header and output the XML
 	header('Content-type: application/xml');
-	echo $doc->saveXML(); // asXML()
+	//echo $games->saveXML(); // asXML()
+	$games->asXML();
 }
