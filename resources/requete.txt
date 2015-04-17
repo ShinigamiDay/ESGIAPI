@@ -1,0 +1,8 @@
+SELECT GA.IdGame, GA.Title, GA.Description, CO.NameCompany, CO.ActivityCompany, TY.NameType, LI.ContentLink 
+FROM game GA
+LEFT JOIN have_company HAVECO ON HAVECO.IdGame = GA.IdGame
+LEFT JOIN company CO ON CO.IdCompany = HAVECO.idCompany
+LEFT JOIN have_type HAVETY ON HAVETY.IdGame = GA.IdGame
+LEFT JOIN type TY ON TY.IdType = HAVETY.IdType
+LEFT JOIN have_link HAVELI ON HAVELI.IdGame = GA.IdGame
+LEFT JOIN link LI ON LI.IdLink = HAVELI.IdLink
