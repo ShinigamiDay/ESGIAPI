@@ -182,3 +182,32 @@ INSERT INTO `have_language` (`LABELLANGUAGE`, `IDPLATFORMGAME`) VALUES
 ('italien', 4),
 ('chinois', 5);
 
+
+
+INSERT INTO `seller` (`IDPRICE`, `SELLER`, `TYPEMEDIA`) VALUES
+(1, 'nicolas', 'neuf'),
+(2, 'haithem', 'occasion'),
+(3, 'baway', 'neuf'),
+(4, 'fabio', 'occasion'),
+(5, 'riot games', 'neuf');
+
+
+
+INSERT INTO `trick` (`IDTRICK`, `IDPLATFORMGAME`, `LABELMEDIA`) VALUES
+(1, 1, 'astuce 1'),
+(2, 2, 'astuce 2'),
+(3, 3, 'astuce 3'),
+(4, 4, 'astuce 4'),
+(5, 5, 'astuce 5');
+
+
+
+INSERT INTO `have_price` (`IDPRICE`, `IDPLATFORMGAME`, `PRICE`, `CURRENCY`) VALUES
+(1, 1, 59.99, 'euros'),
+(1, 2, 90, 'dollars'),
+(2, 3, 48.98, 'euros'),
+(3, 4, 31.75, 'euros'),
+(5, 5, 29.99, 'pounds');
+
+
+
