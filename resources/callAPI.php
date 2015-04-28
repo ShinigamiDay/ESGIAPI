@@ -188,7 +188,6 @@ public function videoGamesXML($stmt) {
 	    		$social = $socialLinks->addChild('socialLink');
 	    		$social->setAttribute('type', $socialDB);
 	    	}
-	    	
 	    		    	
 	    }
 
