@@ -129,6 +129,7 @@
 				<xsd:element name="jeu">
 					<xsd:complexType>
 						<xsd:sequence>
+							<xsd:attribute name="id" type="xsd:string"/>
 							<xsd:element name="titre" type="xsd:string"/>
 							<!-- Sociétés = éditeurs, développeurs etc ... -->
 							<xsd:element name="societes">

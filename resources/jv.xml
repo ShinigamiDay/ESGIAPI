@@ -2,7 +2,7 @@
 
 <jeuxVideo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="jv.xsd"> 
-    <jeu> 
+    <jeu id="1"> 
         <titre>League Of Legends</titre> 
         <societes>
             <societe activite="editeur"></societe>

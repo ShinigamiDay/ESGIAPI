@@ -1,7 +1,5 @@
-<?php 
-
+<?php
 require_once('../model/Log.php');
-
 $api = new Log;
 $tabLog = $api->logBdd();
 $dbname = $tabLog["dbname"];
@@ -10,8 +8,7 @@ $password = $tabLog["password"];
 $host = $tabLog["host"];
 $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 $var = 'mysql:host='.$host.';dbname='.$dbname;
-$_db = new PDO($var, $username, $password, $pdo_options);
-
+$db = new PDO($var, $username, $password, $pdo_options);
 /*
 public static $user = "test@gmail.com";
 public static $api = "MAAODMFP01RORIR4949DK3SMEPEP12";
@@ -40,13 +37,12 @@ public static function verify() {
 	}
 }
 */
-
-$q = $this->_db->query('SELECT * FROM t_selection ');
-
+$q = $db->query('SELECT * FROM GAME');
 $datas = $q->fetchAll(PDO::FETCH_ASSOC);
+//videoGamesXML($datas);
 
-videoGamesXML($datas);
-
+var_dump($datas);
+/*
 public function videoGamesXML($stmt) {
 
 // Racine Element XML
@@ -213,13 +209,6 @@ public function videoGamesXML($stmt) {
 	    }
 
 	    // and next comming soon. Stay tuned.
-	    
-	    /*
-	    // CDATA sections are slightly different
-	    $description = $games->createElement('description');
-	    $description->appendChild($games->createCDATASection($row['description']));
-	    $game->appendChild($description);
-	    */
 
 	}
 
@@ -228,3 +217,4 @@ public function videoGamesXML($stmt) {
 	//echo $games->saveXML(); // asXML()
 	$games->asXML();
 }
+*/

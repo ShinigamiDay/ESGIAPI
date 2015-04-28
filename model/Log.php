@@ -4,7 +4,7 @@
 
 		public function logBdd () {
 
-			$dbname = "dp_api";
+			$dbname = "db_api";
 			$username = "root";
 			$password = "root";
 			$host = "localhost";
