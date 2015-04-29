@@ -86,12 +86,5 @@
                 </jeuxSimilaires> 
             </plateforme> 
         </plateformes> 
-
-        <!-- lien vers les pages fb ou twitter du jeu --> 
-
-        <socialLinks> 
-            <socialLink type="Facebook"> 
-            </socialLink> 
-        </socialLinks> 
     </jeu> 
 </jeuxVideo> 

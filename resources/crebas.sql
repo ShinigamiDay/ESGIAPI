@@ -70,6 +70,7 @@ create table COMMENT
    AUTHOR               varchar(200) not null,
    NOTE                 decimal(3,1) not null,
    CONTENT              varchar(200) not null,
+   DATE_COMMENT         datetime not null,
    primary key (IDCOMMENT)
 );
 
@@ -97,6 +98,7 @@ create table CONFIGURATION
    GPU                  varchar(200) not null,
    CONNECTIONCONFIG     longtext not null,
    DIRECTX              varchar(200) not null,
+   TYPE_CONFIG          varchar(140) not null,
    primary key (IDCONFIGURATION)
 );
 

@@ -6,7 +6,7 @@ public static $secret = "01PQE93JD83DH381HS7HSJPXBC82NC";
 public static $id = "14";
 public static $host = "localhost";
 
-public static function verify() {
+static function verify() {
 	$signHTTP = $_SERVER['HTTP_SIGN'];
 	$userHTTP = $_SERVER['HTTP_HEADERUSER'];
 	$hostHTTP = $_SERVER['HTTP_HOST'];
@@ -27,7 +27,7 @@ public static function verify() {
 	}
 }
 
-public function connection() {
+function connection() {
 	$api = new Log;
 	$tabLog = $api->logBdd();
 	$dbname = $tabLog["dbname"];
@@ -41,10 +41,80 @@ public function connection() {
 
 $db = connection();
 
-$q = $db->query('SELECT * FROM game ');
+$q = $db->query('SELECT g.TITLE AS game,
+						g.DESCRIPTION,
+						g.IDGAME,
+						c.NAMECOMPANY,
+						t.NAMETYPE,
+						l.CONTENTLINK,
+						l.IDTYPELINK,
+						tl.NAMETYPELINK,
+						gm.NAMEGAMEMODE,
+						pg.IDPLATFORMGAME,
+						pg.IDPLATFORM,
+						pg.DESCRIPTION,
+						pg.PEGI,
+						pg.EXIT_DATE,
+						p.NAMEPLATFORM,
+						hp.PRICE,
+						hp.CURRENCY,
+						se.SELLER,
+						se.TYPEMEDIA,
+						hn.NOTE,
+						n.SOURCE,
+						pt.TYPEMEDIA,
+						pt.POINT,
+						m.TYPEMEDIA,
+						m.TARGETMEDIA,
+						m.LABELMEDIA,
+						m.URLMEDIA,
+						m.ALTMEDIA,
+						cm.AUTHOR,
+						cm.NOTE,
+						cm.CONTENT,
+						cg.SYSTEM,
+						cg.RAM,
+						cg.DISK,
+						cg.GPU,
+						cg.CONNECTIONCONFIG,
+						cg.DIRECTX,
+						hlg.LABELLANGUAGE,
+						hs.LABELLANGUAGE,
+						tk.LABELMEDIA,
+						sg.LABELMEDIA,
+						sg.URLMEDIA
 
-$donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+				FROM GAME g -- Table de référence
+				LEFT JOIN HAVE_COMPANY hc ON g.IDGAME = hc.IDGAME -- Jointure entre les tables HAVE_COMPANY et GAME
+				LEFT JOIN COMPANY c ON hc.IDCOMPANY = c.IDCOMPANY
+				LEFT JOIN HAVE_TYPE ht ON g.IDGAME = ht.IDGAME -- TYPE
+				LEFT JOIN TYPE t ON ht.IDTYPE = t.IDTYPE
+				LEFT JOIN HAVE_LINK hl ON g.IDGAME = hl.IDGAME -- LINK
+				LEFT JOIN LINK l ON hl.IDLINK = l.IDLINK
+				LEFT JOIN TYPELINK tl ON l.IDTYPELINK = tl.IDTYPELINK -- TYPELINK
+				LEFT JOIN HAVE_GAMEMODE hm ON g.IDGAME = hm.IDGAME -- GAME MODE
+				LEFT JOIN MODE gm ON hm.IDGAMEMODE = gm.IDGAMEMODE
+				LEFT JOIN PLATFORMGAME pg ON g.IDGAME = pg.IDGAME -- GAME PLATFORM
+				LEFT JOIN PLATFORM p ON pg.IDPLATFORM = pg.IDPLATFORM
+				LEFT JOIN HAVE_PRICE hp ON pg.IDPLATFORMGAME = hp.IDPLATFORMGAME -- GAME PRICE
+				LEFT JOIN SELLER se ON hp.IDPRICE = se.IDPRICE
+				LEFT JOIN HAVE_NOTE hn ON pg.IDPLATFORMGAME = hn.IDPLATFORMGAME -- GAME NOTE
+				LEFT JOIN NOTE n ON hn.IDNOTE = hn.IDNOTE
+				LEFT JOIN POINT pt ON pg.IDPLATFORMGAME = pt.IDPLATFORMGAME -- GAME point
+				LEFT JOIN MEDIA m ON pg.IDPLATFORMGAME = m.IDPLATFORMGAME -- GAME MEDIA
+				LEFT JOIN COMMENT cm ON pg.IDPLATFORMGAME = cm.IDPLATFORMGAME -- GAME COMMENT
+				LEFT JOIN CONFIGURATION cg ON pg.IDPLATFORMGAME = cg.IDPLATFORMGAME -- GAME CONFIG
+				LEFT JOIN HAVE_LANGUAGE hlg ON pg.IDPLATFORMGAME = hlg.IDPLATFORMGAME -- GAME LANGUAGES AUDIO
+				LEFT JOIN HAVE_SUBTITLE hs ON pg.IDPLATFORMGAME = hs.IDPLATFORMGAME -- GAME LANGUE SUBTITLE
+				LEFT JOIN TRICK tk ON pg.IDPLATFORMGAME = tk.IDPLATFORMGAME -- GAME TRICK
+				LEFT JOIN HAVE_SIMILARGAME hsg ON pg.IDPLATFORMGAME = hsg.IDPLATFORMGAME -- GAME SIMILAR
+				LEFT JOIN SIMILARGAME sg ON hsg.IDSIMILARGAME = sg.IDSIMILARGAME
+				ORDER BY g.IDGAME');
+die();
+$stmt = $q->fetch(PDO::FETCH_ASSOC);
 
+var_dump($stmt);
+/*
 public function videoGamesXML($stmt) {
 
 // Racine Element XML
@@ -211,12 +281,12 @@ public function videoGamesXML($stmt) {
 
 	    // and next comming soon. Stay tuned.
 	    
-	    /*
+	    
 	    // CDATA sections are slightly different
-	    $description = $games->createElement('description');
-	    $description->appendChild($games->createCDATASection($row['description']));
-	    $game->appendChild($description);
-	    */
+	    //$description = $games->createElement('description');
+	    //$description->appendChild($games->createCDATASection($row['description']));
+	    //$game->appendChild($description);
+	    
 
 	}
 
@@ -224,4 +294,4 @@ public function videoGamesXML($stmt) {
 	header('Content-type: application/xml');
 	//echo $games->saveXML(); // asXML()
 	$games->asXML();
-}
+}*/
