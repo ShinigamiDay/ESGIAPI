@@ -12,4 +12,9 @@ Class blogController Extends baseController {
         $this->registry->template->welcome="dfdsf";
         $this->registry->template->show('index');
     }
+
+    public function add() {
+        $this->registry->template->welcome="page add";
+        $this->registry->template->show('add');
+    }
 }

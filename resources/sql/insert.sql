@@ -23,11 +23,11 @@ INSERT INTO `platform` (`IDPlatForm`, `NAMEPlatForm`) VALUES
 (15, 'Nintendo 64');
 
 INSERT INTO `type` (`IDTYPE`, `NAMETYPE`) VALUES
-(1, 'Solo'),
-(2, 'Multijoueurs'),
-(3, 'Arcade'),
-(4, 'Simulation'),
-(5, 'Campagne');
+(1, 'MOBA'),
+(2, 'RPG'),
+(3, 'Fantasy'),
+(4, 'FTS'),
+(5, 'FPS');
 
 INSERT INTO `have_company` (`IDCOMPANY`, `IDGAME`) VALUES
 (1, 1),
@@ -40,7 +40,6 @@ INSERT INTO `have_company` (`IDCOMPANY`, `IDGAME`) VALUES
 (8, 3),
 (9, 3),
 (10, 2);
-
 
 INSERT INTO `have_type` (`IDTYPE`, `IDGAME`) VALUES
 (1, 1),
@@ -67,14 +66,12 @@ INSERT INTO `have_gamemode` (`IDGameMODE`, `IDGAME`) VALUES
 (4, 3),
 (5, 2);
 
-
 INSERT INTO `platformgame` (`IDPLATFORMGAME`, `IDGAME`, `IDPLATFORM`) VALUES
 (1, 1, 1),
 (2, 2, 2),
 (3, 3, 3),
 (4, 1, 4),
 (5, 1, 5);
-
 
 INSERT INTO `typelink` (`IDTYPELINK`, `NAMETYPELINK`) VALUES
 (1, 'Facebook'),
@@ -83,14 +80,12 @@ INSERT INTO `typelink` (`IDTYPELINK`, `NAMETYPELINK`) VALUES
 (4, 'Site non officiel'),
 (5, 'blog');
 
-
 INSERT INTO `link` (`IDLINK`, `IDTYPELINK`, `CONTENTLINK`) VALUES
 (1, 1, 'www.google.fr'),
 (2, 2, 'www.facebook.fr'),
 (3, 3, 'www.siteofficiel.fr'),
 (4, 4, 'www.sitenonofficiel.fr'),
 (5, 5, 'www.blog.fr');
-
 
 INSERT INTO `have_link` (`IDLINK`, `IDGAME`) VALUES
 (1, 1),
@@ -110,8 +105,6 @@ INSERT INTO `have_note` (`IDNOTE`, `IDPLATFORMGAME`, `NOTE`) VALUES
 (2, 1, '17.0'),
 (2, 4, '8.0');
 
-
-
 INSERT INTO `point` (`IDPOINT`, `IDPLATFORMGAME`, `TYPEMEDIA`, `POINT`) VALUES
 (1, 1, 'Gratuit', 'positif'),
 (2, 2, 'Multijoueurs', 'positif'),
@@ -119,13 +112,9 @@ INSERT INTO `point` (`IDPOINT`, `IDPLATFORMGAME`, `TYPEMEDIA`, `POINT`) VALUES
 (4, 4, 'Options payantes', 'negatif'),
 (5, 5, 'Accès uniquement Online', 'negatif');
 
-
-
 INSERT INTO `media` (`IDMEDIA`, `IDPLATFORMGAME`, `TYPEMEDIA`, `TARGETMEDIA`, `LABELMEDIA`, `URLMEDIA`, `ALTMEDIA`) VALUES
 (1, 1, 'image', 'cover', 'Couverture', 'www.google.fr', 'imageGoogle'),
 (2, 2, 'video', 'cover', 'Couverture', 'https://gogole.fr', 'videoDeLaVie');
-
-
 
 INSERT INTO `comment` (`IDCOMMENT`, `IDPLATFORMGAME`, `AUTHOR`, `NOTE`, `CONTENT`) VALUES
 (1, 1, 'nicolas', '15.0', 'c''est cool'),
@@ -134,12 +123,9 @@ INSERT INTO `comment` (`IDCOMMENT`, `IDPLATFORMGAME`, `AUTHOR`, `NOTE`, `CONTENT
 (4, 4, 'baway', '12.0', 'smoke weed everyday'),
 (5, 5, 'groupe', '15.0', 'note de ce projet');
 
-
 INSERT INTO `configuration` (`IDCONFIGURATION`, `IDPLATFORMGAME`, `SYSTEM`, `RAM`, `DISK`, `GPU`, `CONNECTIONCONFIG`, `DIRECTX`) VALUES
 (1, 1, 'windows 8', '4go', '512ko', 'gpu1', 'config de la conentino', '11'),
 (2, 5, 'windows 7', '8', '1to', 'gpu2', 'connection configuration', '10');
-
-
 
 INSERT INTO `similargame` (`IDSIMILARGAME`, `LABELMEDIA`, `URLMEDIA`) VALUES
 (1, 'gta 4', 'www.gta4.fr'),
@@ -217,7 +203,7 @@ INSERT INTO `user` (`IDUSER`, `IDROLE`, `MAILUSER`, `PUBLICKEY`, `HOST`) VALUES
 (1, 1, 'nicolas.framery.2504@gmail.com', 'cle1laplusbelledumonde', 'host1'),
 (2, 2, 'nicolas.framery.2504@gmail.com', 'cle2laplusbelledumonde', 'host2'),
 (3, 1, 'nicolas.framery.2504@gmail.com', 'cle3laplusbelledumonde', 'host3'),
-(4, 2, 'nicolas.framery.2504@gmail.com', 'cle4laplusbelledumonde', 'host4');
+(4, 2, 'nicolas.framery.2504@gmail.com', 'cle4laplusbelledumonde', 'host');
 
 
 
