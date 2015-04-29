@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="COMMENT" idMethod="native" phpName="Comment">
+    <column name="IDCOMMENT" phpName="Idcomment" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" required="true"/>
+    <column name="AUTHOR" phpName="Author" type="VARCHAR" size="200" required="true"/>
+    <column name="NOTE" phpName="Note" type="DECIMAL" size="3" scale="1" required="true"/>
+    <column name="CONTENT" phpName="Content" type="VARCHAR" size="200" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_COMMENT">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_COMMENT">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="COMPANY" idMethod="native" phpName="Company">
+    <column name="IDCOMPANY" phpName="Idcompany" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMECOMPANY" phpName="Namecompany" type="VARCHAR" size="200" required="true"/>
+    <column name="ACTIVITYCOMPANY" phpName="Activitycompany" type="VARCHAR" size="150" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="CONFIGURATION" idMethod="native" phpName="Configuration">
+    <column name="IDCONFIGURATION" phpName="Idconfiguration" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" required="true"/>
+    <column name="SYSTEM" phpName="System" type="VARCHAR" size="200" required="true"/>
+    <column name="RAM" phpName="Ram" type="VARCHAR" size="200" required="true"/>
+    <column name="DISK" phpName="Disk" type="VARCHAR" size="200" required="true"/>
+    <column name="GPU" phpName="Gpu" type="VARCHAR" size="200" required="true"/>
+    <column name="CONNECTIONCONFIG" phpName="Connectionconfig" type="CLOB" required="true"/>
+    <column name="DIRECTX" phpName="Directx" type="VARCHAR" size="200" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_CONFIGURATION">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_CONFIGURATION">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="GAME" idMethod="native" phpName="Game">
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="TITLE" phpName="Title" type="CLOB" required="true"/>
+    <column name="DESCRIPTION" phpName="Description" type="LONGVARCHAR" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_COMPANY" idMethod="native" phpName="HaveCompany">
+    <column name="IDCOMPANY" phpName="Idcompany" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="GAME" name="FK_HAVE_COMPANY2">
+      <reference local="IDGAME" foreign="IDGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="COMPANY" name="FK_HAVE_COMPANY">
+      <reference local="IDCOMPANY" foreign="IDCOMPANY"/>
+    </foreign-key>
+    <index name="FK_HAVE_COMPANY2">
+      <index-column name="IDGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_GAMEMODE" idMethod="native" phpName="HaveGamemode">
+    <column name="IDGAMEMODE" phpName="Idgamemode" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="GAME" name="FK_HAVE_GAMEMODE2">
+      <reference local="IDGAME" foreign="IDGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="MODE" name="FK_HAVE_GAMEMODE">
+      <reference local="IDGAMEMODE" foreign="IDGAMEMODE"/>
+    </foreign-key>
+    <index name="FK_HAVE_GAMEMODE2">
+      <index-column name="IDGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_LANGUAGE" idMethod="native" phpName="HaveLanguage">
+    <column name="LABELLANGUAGE" phpName="Labellanguage" type="VARCHAR" size="100" primaryKey="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_LANGUAGE2">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="LANGUAGE" name="FK_HAVE_LANGUAGE">
+      <reference local="LABELLANGUAGE" foreign="LABELLANGUAGE"/>
+    </foreign-key>
+    <index name="FK_HAVE_LANGUAGE2">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_LINK" idMethod="native" phpName="HaveLink">
+    <column name="IDLINK" phpName="Idlink" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="GAME" name="FK_HAVE_LINK2">
+      <reference local="IDGAME" foreign="IDGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="LINK" name="FK_HAVE_LINK">
+      <reference local="IDLINK" foreign="IDLINK"/>
+    </foreign-key>
+    <index name="FK_HAVE_LINK2">
+      <index-column name="IDGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_NOTE" idMethod="native" phpName="HaveNote">
+    <column name="IDNOTE" phpName="Idnote" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="NOTE" phpName="Note" type="DECIMAL" size="3" scale="1"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_NOTE2">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="NOTE" name="FK_HAVE_NOTE">
+      <reference local="IDNOTE" foreign="IDNOTE"/>
+    </foreign-key>
+    <index name="FK_HAVE_NOTE2">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_PRICE" idMethod="native" phpName="HavePrice">
+    <column name="IDPRICE" phpName="Idprice" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="PRICE" phpName="Price" type="FLOAT" required="true"/>
+    <column name="CURRENCY" phpName="Currency" type="VARCHAR" size="150" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_PRICE2">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="SELLER" name="FK_HAVE_PRICE">
+      <reference local="IDPRICE" foreign="IDPRICE"/>
+    </foreign-key>
+    <index name="FK_HAVE_PRICE2">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_SIMILARGAME" idMethod="native" phpName="HaveSimilargame">
+    <column name="IDSIMILARGAME" phpName="Idsimilargame" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_SIMILARGAME2">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="SIMILARGAME" name="FK_HAVE_SIMILARGAME">
+      <reference local="IDSIMILARGAME" foreign="IDSIMILARGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_SIMILARGAME2">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_SUBTITLE" idMethod="native" phpName="HaveSubtitle">
+    <column name="LABELLANGUAGE" phpName="Labellanguage" type="VARCHAR" size="100" primaryKey="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_SUBTITLE2">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="LANGUAGE" name="FK_HAVE_SUBTITLE">
+      <reference local="LABELLANGUAGE" foreign="LABELLANGUAGE"/>
+    </foreign-key>
+    <index name="FK_HAVE_SUBTITLE2">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="HAVE_TYPE" idMethod="native" phpName="HaveType">
+    <column name="IDTYPE" phpName="Idtype" type="BIGINT" primaryKey="true" required="true"/>
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" primaryKey="true" required="true"/>
+    <foreign-key foreignTable="GAME" name="FK_HAVE_TYPE2">
+      <reference local="IDGAME" foreign="IDGAME"/>
+    </foreign-key>
+    <foreign-key foreignTable="TYPE" name="FK_HAVE_TYPE">
+      <reference local="IDTYPE" foreign="IDTYPE"/>
+    </foreign-key>
+    <index name="FK_HAVE_TYPE2">
+      <index-column name="IDGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="LANGUAGE" idMethod="native" phpName="Language">
+    <column name="LABELLANGUAGE" phpName="Labellanguage" type="VARCHAR" size="100" primaryKey="true" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="LINK" idMethod="native" phpName="Link">
+    <column name="IDLINK" phpName="Idlink" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDTYPELINK" phpName="Idtypelink" type="SMALLINT" required="true"/>
+    <column name="CONTENTLINK" phpName="Contentlink" type="CLOB" required="true"/>
+    <foreign-key foreignTable="TYPELINK" name="FK_HAVE_TYPELINK">
+      <reference local="IDTYPELINK" foreign="IDTYPELINK"/>
+    </foreign-key>
+    <index name="FK_HAVE_TYPELINK">
+      <index-column name="IDTYPELINK"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="MEDIA" idMethod="native" phpName="Media">
+    <column name="IDMEDIA" phpName="Idmedia" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" required="true"/>
+    <column name="TYPEMEDIA" phpName="Typemedia" type="VARCHAR" size="100" required="true"/>
+    <column name="TARGETMEDIA" phpName="Targetmedia" type="VARCHAR" size="200" required="true"/>
+    <column name="LABELMEDIA" phpName="Labelmedia" type="VARCHAR" size="200" required="true"/>
+    <column name="URLMEDIA" phpName="Urlmedia" type="CLOB" required="true"/>
+    <column name="ALTMEDIA" phpName="Altmedia" type="VARCHAR" size="200" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_MEDIA">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_MEDIA">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="MODE" idMethod="native" phpName="Mode">
+    <column name="IDGAMEMODE" phpName="Idgamemode" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMEGAMEMODE" phpName="Namegamemode" type="VARCHAR" size="150" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="NOTE" idMethod="native" phpName="Note">
+    <column name="IDNOTE" phpName="Idnote" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="SOURCE" phpName="Source" type="CLOB" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="PLATFORM" idMethod="native" phpName="Platform">
+    <column name="IDPLATFORM" phpName="Idplatform" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMEPLATFORM" phpName="Nameplatform" type="VARCHAR" size="150" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="PLATFORMGAME" idMethod="native" phpName="Platformgame">
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDGAME" phpName="Idgame" type="BIGINT" required="true"/>
+    <column name="IDPLATFORM" phpName="Idplatform" type="BIGINT" required="true"/>
+    <foreign-key foreignTable="PLATFORM" name="FK_HAVE_PFGAME_PF">
+      <reference local="IDPLATFORM" foreign="IDPLATFORM"/>
+    </foreign-key>
+    <foreign-key foreignTable="GAME" name="FK_HAVE_PFGAME_GAME">
+      <reference local="IDGAME" foreign="IDGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_PFGAME_GAME">
+      <index-column name="IDGAME"/>
+    </index>
+    <index name="FK_HAVE_PFGAME_PF">
+      <index-column name="IDPLATFORM"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="POINT" idMethod="native" phpName="Point">
+    <column name="IDPOINT" phpName="Idpoint" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" required="true"/>
+    <column name="TYPEMEDIA" phpName="Typemedia" type="VARCHAR" size="100"/>
+    <column name="POINT" phpName="Point" type="VARCHAR" size="150"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_POINT">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_POINT">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="ROLE" idMethod="native" phpName="Role">
+    <column name="IDROLE" phpName="Idrole" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMEROLE" phpName="Namerole" type="VARCHAR" size="80" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="SELLER" idMethod="native" phpName="Seller">
+    <column name="IDPRICE" phpName="Idprice" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="SELLER" phpName="Seller" type="VARCHAR" size="150" required="true"/>
+    <column name="TYPEMEDIA" phpName="Typemedia" type="VARCHAR" size="100" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="SIMILARGAME" idMethod="native" phpName="Similargame">
+    <column name="IDSIMILARGAME" phpName="Idsimilargame" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="LABELMEDIA" phpName="Labelmedia" type="VARCHAR" size="200" required="true"/>
+    <column name="URLMEDIA" phpName="Urlmedia" type="CLOB" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="TRICK" idMethod="native" phpName="Trick">
+    <column name="IDTRICK" phpName="Idtrick" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDPLATFORMGAME" phpName="Idplatformgame" type="BIGINT" required="true"/>
+    <column name="LABELMEDIA" phpName="Labelmedia" type="VARCHAR" size="200" required="true"/>
+    <foreign-key foreignTable="PLATFORMGAME" name="FK_HAVE_TRICK">
+      <reference local="IDPLATFORMGAME" foreign="IDPLATFORMGAME"/>
+    </foreign-key>
+    <index name="FK_HAVE_TRICK">
+      <index-column name="IDPLATFORMGAME"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="TYPE" idMethod="native" phpName="Type">
+    <column name="IDTYPE" phpName="Idtype" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMETYPE" phpName="Nametype" type="VARCHAR" size="150" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="TYPELINK" idMethod="native" phpName="Typelink">
+    <column name="IDTYPELINK" phpName="Idtypelink" type="SMALLINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="NAMETYPELINK" phpName="Nametypelink" type="VARCHAR" size="200" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="USER" idMethod="native" phpName="User">
+    <column name="IDUSER" phpName="Iduser" type="BIGINT" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="IDROLE" phpName="Idrole" type="BIGINT" required="true"/>
+    <column name="MAILUSER" phpName="Mailuser" type="CLOB" required="true"/>
+    <column name="PUBLICKEY" phpName="Publickey" type="VARCHAR" size="130" required="true"/>
+    <column name="HOST" phpName="Host" type="VARCHAR" size="30" required="true"/>
+    <foreign-key foreignTable="ROLE" name="FK_HAVE_ROLE">
+      <reference local="IDROLE" foreign="IDROLE"/>
+    </foreign-key>
+    <index name="FK_HAVE_ROLE">
+      <index-column name="IDROLE"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>

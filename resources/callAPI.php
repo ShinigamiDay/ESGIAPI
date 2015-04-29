@@ -27,6 +27,25 @@ public static function verify() {
 	}
 }
 
+public function connection() {
+	$api = new Log;
+	$tabLog = $api->logBdd();
+	$dbname = $tabLog["dbname"];
+	$username = $tabLog["username"];
+	$password = $tabLog["password"];
+	$host = $tabLog["host"];
+    $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+    $var = 'mysql:host='.$host.';dbname='.$dbname;
+	return new PDO($var, $username, $password, $pdo_options);
+}
+
+$db = connection();
+
+
+$q = $db->query('SELECT * FROM t_image ');
+
+$donnees = $q->fetchAll(PDO::FETCH_ASSOC);
+
 public function videoGamesXML($stmt) {
 
 // Racine Element XML
