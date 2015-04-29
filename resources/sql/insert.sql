@@ -5,7 +5,7 @@ INSERT INTO `game` (`IDGAME`, `TITLE`, `DESCRIPTION`) VALUES
 
 INSERT INTO `company` (`idCompany`,`nameCompany`,`activityCompany`) VALUES (1,"Quis Company","developpeur"),(2,"Dui Inc.","developpeur"),(3,"Integer Inc.","developpeur"),(4,"Proin Vel LLP","developpeur"),(5,"Sociis Natoque Penatibus Corporation","editeur"),(6,"Ridiculus Inc.","editeur"),(7,"Felis Nulla LLC","editeur"),(8,"Vel Faucibus LLC","developpeur"),(9,"Taciti Sociosqu Incorporated","developpeur"),(10,"Dapibus Rutrum Inc.","developpeur");
 
-INSERT INTO `platform` (`ID`, `NAME`) VALUES
+INSERT INTO `platform` (`IDPlatForm`, `NAMEPlatForm`) VALUES
 (1, 'PS2'),
 (2, 'PS3'),
 (3, 'PS4'),
@@ -51,14 +51,14 @@ INSERT INTO `have_type` (`IDTYPE`, `IDGAME`) VALUES
 (4, 3),
 (5, 2);
 
-INSERT INTO `mode` (`IDMODE`, `NAMEMODE`) VALUES
+INSERT INTO `mode` (`IDGameMODE`, `NAMEGameMODE`) VALUES
 (1, 'Solo'),
 (2, 'Multijoueurs'),
 (3, 'Arcade'),
 (4, 'Simulation'),
 (5, 'Campagne');
 
-INSERT INTO `have_mode` (`IDMODE`, `IDGAME`) VALUES
+INSERT INTO `have_gamemode` (`IDGameMODE`, `IDGAME`) VALUES
 (1, 1),
 (2, 1),
 (2, 3),
@@ -68,7 +68,7 @@ INSERT INTO `have_mode` (`IDMODE`, `IDGAME`) VALUES
 (5, 2);
 
 
-INSERT INTO `platformgame` (`IDPLATFORMGAME`, `IDGAME`, `ID`) VALUES
+INSERT INTO `platformgame` (`IDPLATFORMGAME`, `IDGAME`, `IDPLATFORM`) VALUES
 (1, 1, 1),
 (2, 2, 2),
 (3, 3, 3),
@@ -84,12 +84,12 @@ INSERT INTO `typelink` (`IDTYPELINK`, `NAMETYPELINK`) VALUES
 (5, 'blog');
 
 
-INSERT INTO `link` (`IDLINK`, `IDTYPELINK`, `CONTENTLINK`, `SOCIAL`) VALUES
-(1, 1, 'www.google.fr', 1),
-(2, 2, 'www.facebook.fr', 1),
-(3, 3, 'www.siteofficiel.fr', 0),
-(4, 4, 'www.sitenonofficiel.fr', 0),
-(5, 5, 'www.blog.fr', 0);
+INSERT INTO `link` (`IDLINK`, `IDTYPELINK`, `CONTENTLINK`) VALUES
+(1, 1, 'www.google.fr'),
+(2, 2, 'www.facebook.fr'),
+(3, 3, 'www.siteofficiel.fr'),
+(4, 4, 'www.sitenonofficiel.fr'),
+(5, 5, 'www.blog.fr');
 
 
 INSERT INTO `have_link` (`IDLINK`, `IDGAME`) VALUES
@@ -208,6 +208,16 @@ INSERT INTO `have_price` (`IDPRICE`, `IDPLATFORMGAME`, `PRICE`, `CURRENCY`) VALU
 (2, 3, 48.98, 'euros'),
 (3, 4, 31.75, 'euros'),
 (5, 5, 29.99, 'pounds');
+
+INSERT INTO `role` (`IDROLE`, `NAMEROLE`) VALUES
+(1, 'administrateur'),
+(2, 'abonné');
+
+INSERT INTO `user` (`IDUSER`, `IDROLE`, `MAILUSER`, `PUBLICKEY`, `HOST`) VALUES
+(1, 1, 'nicolas.framery.2504@gmail.com', 'cle1laplusbelledumonde', 'host1'),
+(2, 2, 'nicolas.framery.2504@gmail.com', 'cle2laplusbelledumonde', 'host2'),
+(3, 1, 'nicolas.framery.2504@gmail.com', 'cle3laplusbelledumonde', 'host3'),
+(4, 2, 'nicolas.framery.2504@gmail.com', 'cle4laplusbelledumonde', 'host4');
 
 
 

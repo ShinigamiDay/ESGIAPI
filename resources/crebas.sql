@@ -209,7 +209,7 @@ create table HAVE_TYPE
 /*==============================================================*/
 create table LANGUAGE
 (
-   LABELLANGUAGE        varchar(100) not null AUTO_INCREMENT,
+   LABELLANGUAGE        varchar(100) not null,
    primary key (LABELLANGUAGE)
 );
 
