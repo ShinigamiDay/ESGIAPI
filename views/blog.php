@@ -205,35 +205,65 @@ function videoGamesXML($stmt, $db) {
 	    	$platform->addChild('resume', $platformDB['DESCRIPTION']);
 	    // Create Release date node to platform node
 	    	$platform->addChild('dateSortie', $platformDB['EXIT_DATE']);
+
+	    // Prices database
+		    $q = $db->prepare(
+				'SELECT * FROM HAVE_PRICE hp
+				LEFT JOIN SELLER se ON hp.IDPRICE = se.IDPRICE
+				WHERE IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$pricesDB = $q->fetchAll();
 	    // Create node prices containes multiple price
 	    	$prices = $platform->addChild('prix');
-	    	foreach ($platformDB['prices'] as $priceDB) {
+
+	    	foreach ($pricesDB as $priceDB) {
 	    		$price = $prices->addChild('price', $priceDB['PRICE']);
 	    		$price->addAttribute('vendeur', $priceDB['SELLER']);
 	    		$price->addAttribute('type', $priceDB['TYPEMEDIA']);
 	    		$price->addAttribute('devise', $priceDB['CURRENCY']);
 	    	}
 
+	    // Notes database
+		    $q = $db->prepare(
+				'SELECT * FROM NOTE n
+				LEFT JOIN HAVE_NOTE hn ON n.IDNOTE = hn.IDNOTE
+				WHERE IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$notesDB = $q->fetchAll();
 		// Create node notes containes multiple note
 	    	$scores = $platform->addChild('notes');
-	    	foreach ($platformDB['scores'] as $scoreDB) {
-	    		$score = $scores->addChild('score', $scoreDB['NOTE']);
-	    		$score->addAttribute('source', $priceDB['SOURCE']);
+	    	foreach ($notesDB as $scoreDB) {
+	    		$score = $scores->addChild('notation', $scoreDB['NOTE']);
+	    		$score->addAttribute('source', $scoreDB['SOURCE']);
 	    	}
 
 	    // Create pegi node
 	    	$platform->addChild('pegi', $platformDB['PEGI']);
 
+	    // Points database
+	    	$q = $db->prepare(
+				'SELECT * FROM POINT AS pt WHERE pt.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$pointsDB = $q->fetchAll();
 	    // Create points node
 	    	$points = $platform->addChild('points');
-	    	foreach ($platformDB['points'] as $pointDB) {
+	    	foreach ($pointsDB as $pointDB) {
 	    		$point = $points->addChild('point', $pointDB['POINT']);
 	    		$point->addAttribute('type', $pointDB['TYPEMEDIA']);
 	    	}
 
+	    // Medias database
+	    	$q = $db->prepare(
+				'SELECT * FROM MEDIA AS m WHERE m.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$mediasDB = $q->fetchAll();
 	    // Create Medias nodes
 	    	$medias = $platform->addChild('medias');
-	    	foreach ($platformDB['medias'] as $mediaDB) {
+	    	foreach ($mediasDB as $mediaDB) {
 	    		$media = $medias->addChild('media');
 	    		$media->addAttribute('type', $mediaDB['TYPEMEDIA']);
 	    		$media->addAttribute('cible', $mediaDB['TARGETMEDIA']);
@@ -244,9 +274,15 @@ function videoGamesXML($stmt, $db) {
 	    		$media->addChild('alt', $mediaDB['ALTMEDIA']);
 	    	}
 
+	    // Comments database
+	    	$q = $db->prepare(
+				'SELECT * FROM COMMENT AS c WHERE c.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$commentsDB = $q->fetchAll();
 	    // Create Comments nodes
 	    	$commentaires = $platform->addChild('commentaires');
-	    	foreach ($platformDB['commentaires'] as $commentaireDB) {
+	    	foreach ($commentsDB as $commentaireDB) {
 	    		$commentaire = $commentaires->addChild('commentaire');
 
 	    		// Add author, date, note and content to comment node.
@@ -256,9 +292,15 @@ function videoGamesXML($stmt, $db) {
 	    		$commentaire->addChild('contenu', $commentaireDB['CONTENT']);
 	    	}
 
+	    // Configurations database
+	    	$q = $db->prepare(
+				'SELECT * FROM CONFIGURATION AS cg WHERE cg.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$configsDB = $q->fetchAll();
 	    // Create configurations nodes
 	    	$configurations = $platform->addChild('configurationsPc');
-	    	foreach ($platformDB['configurations'] as $configDB) {
+	    	foreach ($configsDB as $configDB) {
 	    		$config = $configurations->addChild('configurationPC');
 	    		$config->addAttribute('type', $configDB['TYPE_CONFIG']);
 
@@ -266,38 +308,62 @@ function videoGamesXML($stmt, $db) {
 	    		$config->addChild('systeme', $configDB['SYSTEM']);
 	    		$config->addChild('ram', $configDB['RAM']);
 	    		$config->addChild('disqueDur', $configDB['DISK']);
-	    		$config->addChild('cpu', $configDB['CPU']);
 	    		$config->addChild('gpu', $configDB['GPU']);
 	    		$config->addChild('connexion', $configDB['CONNECTIONCONFIG']);
 	    		$config->addChild('directX', $configDB['DIRECTX']);
 	    	}
 
+	    // Languages database
+	    	$q = $db->prepare(
+				'SELECT * FROM HAVE_LANGUAGE AS hlg WHERE hlg.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$langsDB = $q->fetchAll();
 	    // Create lang nodes
 	    	$languages = $platform->addChild('langues');
-	    	foreach ($platformDB['languages'] as $langDB) {
+	    	foreach ($langsDB as $langDB) {
 
 	    		// Audios
 	    		$audios = $languages->addChild('audios');
-	    		foreach ($langDB['audios'] as $audioDB) {
-	    			$audios->addChild('audio', $audioDB['LABELLANGUAGE']);
-	    		}
+	    		$audios->addChild('audio', $langDB['LABELLANGUAGE']);
 	    		
-	    		// Subtitles
-	    		$subtitles = $languages->addChild('sousTitres');
-	    		foreach ($langDB['subtitles'] as $subtitleDB) {
-	    			$audios->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);
-	    		}
+	    		
 	    	}
 
+	    	$q = $db->prepare(
+				'SELECT * FROM HAVE_SUBTITLE AS hs WHERE hs.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$subtitlesDB = $q->fetchAll();
+	    	foreach ($subtitlesDB as $subtitleDB) {
+	    		// Subtitles
+	    		// 
+	    		$subtitles = $languages->addChild('sousTitres');
+	    		$subtitles->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);
+	    	}
+
+	    	// Languages database
+	    	$q = $db->prepare(
+				'SELECT * FROM TRICK AS tk WHERE tk.IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$tricksDB = $q->fetchAll();
 	    	// Tips node
 	    	$tips = $platform->addChild('astuces');
-	    	foreach ($platform['tricks'] as $trickDB) {
+	    	foreach ($tricksDB as $trickDB) {
 	    		$tips->addChild('astuce', $trickDB['LABELMEDIA']);
 	    	}
 
+	    	// Similars database
+	    	$q = $db->prepare(
+				'SELECT * FROM HAVE_SIMILARGAME hsg
+				LEFT JOIN SIMILARGAME sg ON hsg.IDSIMILARGAME = sg.IDSIMILARGAME WHERE IDPLATFORMGAME=:id');
+			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
+			$q->execute();
+			$similarsDB = $q->fetchAll();
 	    	// Similar game node
 	    	$similarGames = $platform->addChild('jeuxSimilaires');
-	    	foreach ($platform['similarGame'] as $similarGameDB) {
+	    	foreach ($similarsDB as $similarGameDB) {
 	    		$tip = $tips->addChild('jeuSimilaire');
 
 	    		$tip->addChild('libelleJeu', $similarGameDB['LABELMEDIA']);
