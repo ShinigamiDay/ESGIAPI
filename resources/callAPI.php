@@ -41,8 +41,7 @@ public function connection() {
 
 $db = connection();
 
-
-$q = $db->query('SELECT * FROM t_image ');
+$q = $db->query('SELECT * FROM game ');
 
 $donnees = $q->fetchAll(PDO::FETCH_ASSOC);
 

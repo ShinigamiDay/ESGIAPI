@@ -277,6 +277,9 @@ create table PLATFORMGAME
    IDPLATFORMGAME       bigint not null AUTO_INCREMENT,
    IDGAME               bigint not null,
    IDPLATFORM           bigint not null,
+   DESCRIPTION          text not null,
+   EXIT_DATE            date not null,
+   PEGI                 varchar(120) not null,
    primary key (IDPLATFORMGAME)
 );
 
