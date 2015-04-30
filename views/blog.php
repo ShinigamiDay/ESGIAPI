@@ -376,17 +376,14 @@ function videoGamesXML($stmt, $db) {
 
 	    // and next comming soon. Stay tuned.
 	    
-	    
 	    // CDATA sections are slightly different
 	    //$description = $games->createElement('description');
 	    //$description->appendChild($games->createCDATASection($row['description']));
 	    //$game->appendChild($description);
-	    
 
 	}
 
 	// Set the appropriate content-type header and output the XML
-	//header('Content-type: application/xml');
 	//echo $games->saveXML(); // asXML()
 	Header('Content-type: text/xml');
 	echo $games->asXML();
