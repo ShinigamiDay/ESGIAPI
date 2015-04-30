@@ -4,9 +4,9 @@
 
 		public function logBdd () {
 
-			$dbname = "db_esgiapi";
+			$dbname = "db_api";
 			$username = "root";
-			$password = "root";
+			$password = "";
 			$host = "localhost";
 
 			$tabLog = array(

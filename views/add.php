@@ -16,7 +16,7 @@
     $_request->bindValue(':title_game', $titleGame, PDO::PARAM_STR);
     $_request->bindValue(':description_game', $descriptionGame, PDO::PARAM_STR);
 
-    //$_request->execute();
+    $_request->execute();
     /* ------------------------------------------------------------------------------------- */
 
     /* ----------------- Récupération de l'identifiant DU JEU ------------------------------ */
@@ -44,7 +44,7 @@
     $requestCompany->bindValue(':name_company2', $companyAtari['NAMECOMPANY'], PDO::PARAM_STR);
     $requestCompany->bindValue(':activity_company2', $companyAtari['ACTIVITYCOMPANY'], PDO::PARAM_STR);
 
-    //$requestCompany->execute();
+    $requestCompany->execute();
     /* -------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des identifiants des compagnies ------------------------------ */
@@ -88,7 +88,7 @@
     $requestPlatforms->bindValue(':platform14', $platforms[13], PDO::PARAM_STR);
     $requestPlatforms->bindValue(':platform15', $platforms[14], PDO::PARAM_STR);
 
-    //$requestPlatforms->execute();
+    $requestPlatforms->execute();
     /* ------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des identifiants des platforms ----------------------- */
@@ -112,7 +112,7 @@
     $requestTypesGames->bindValue(':type4', $typesGame[3], PDO::PARAM_STR);
     $requestTypesGames->bindValue(':type5', $typesGame[4], PDO::PARAM_STR);
 
-    //$requestTypesGames->execute();
+    $requestTypesGames->execute();
     /* --------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des identifiants des types ----------------------- */
@@ -129,7 +129,7 @@
     $requestHaveCompany->bindValue(':company2', $resultPlatformsID[0]['IDPLATFORM'], PDO::PARAM_INT);
     $requestHaveCompany->bindValue(':company1', $resultPlatformsID[1]['IDPLATFORM'], PDO::PARAM_INT);
 
-    //$requestHaveCompany->execute();
+    $requestHaveCompany->execute();
     /* ----------------------------------------------------------------------------------------------- */
 
     /* ------------ Table HAVE TYPE - Liaisons entre le jeu vidéo et les types --------------- */
@@ -145,7 +145,7 @@
     $requestHaveType->bindValue(':type3', $resultTypesID[2]['IDTYPE'], PDO::PARAM_INT);
     $requestHaveType->bindValue(':type4', $resultTypesID[3]['IDTYPE'], PDO::PARAM_INT);
 
-    //$requestHaveType->execute();
+    $requestHaveType->execute();
     /* --------------------------------------------------------------------------------------- */
 
     /* ----------------- Insertion des modes de jeu ------------------------------ */
@@ -164,7 +164,7 @@
     $requestModesGames->bindValue(':mode4', $modesGame[3], PDO::PARAM_STR);
     $requestModesGames->bindValue(':mode5', $modesGame[4], PDO::PARAM_STR);
 
-    //$requestModesGames->execute();
+    $requestModesGames->execute();
     /* --------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des identifiants des modes ----------------------- */
@@ -185,7 +185,7 @@
     $requestHaveGameMode->bindValue(':mode3', $resultModeID[2]['IDGAMEMODE'], PDO::PARAM_INT);
     $requestHaveGameMode->bindValue(':mode4', $resultModeID[3]['IDGAMEMODE'], PDO::PARAM_INT);
 
-    //$requestHaveGameMode->execute();
+    $requestHaveGameMode->execute();
     /* --------------------------------------------------------------------------------------- */
 
     /* ------------ Table PLATFORMGAME - Liaisons entre le jeu vidéo et les supports ----------- */
@@ -212,7 +212,7 @@
     $requestPlatFormGame->bindValue(':pegi2', $listPEGI[1], PDO::PARAM_STR);
     $requestPlatFormGame->bindValue(':pegi3', $listPEGI[2], PDO::PARAM_STR);
 
-    //$requestPlatFormGame->execute();
+    $requestPlatFormGame->execute();
     /* ----------------------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des IDPLATFORMGAME qui viennent d'être générés ----------------------- */
@@ -236,7 +236,7 @@
     $requestLinksType->bindValue(':type4', $linksType[3], PDO::PARAM_STR);
     $requestLinksType->bindValue(':type5', $linksType[4], PDO::PARAM_STR);
 
-    //$requestLinksType->execute();
+    $requestLinksType->execute();
     /* --------------------------------------------------------------------------------------- */
 
     /* ----------------- Récupération des types de liens pour un jeu ----------------------- */
@@ -264,7 +264,7 @@
     $requestLinks->bindValue(':content4', $links[3], PDO::PARAM_STR);
     $requestLinks->bindValue(':content5', $links[4], PDO::PARAM_STR);
 
-    //$requestLinks->execute();
+    $requestLinks->execute();
     /* ------------------------------------------------------------------------------------------ */
 
     /* ----------------- Récupération des liens pour un jeu ----------------------- */
@@ -285,7 +285,7 @@
     $requestHaveLink->bindValue(':link3', $resultLinkID[2]['IDLINK'], PDO::PARAM_INT);
     $requestHaveLink->bindValue(':link4', $resultLinkID[3]['IDLINK'], PDO::PARAM_INT);
 
-    //$requestHaveLink->execute();
+    $requestHaveLink->execute();
     /* -------------------------------------------------------------------------------------- */
 
     /* ----------------------------- Insertion des notes ---------------------------- */
@@ -298,7 +298,7 @@
     $requestNotes->bindValue(':source1', $notes[0], PDO::PARAM_STR);
     $requestNotes->bindValue(':source2', $notes[1], PDO::PARAM_STR);
 
-    //$requestNotes->execute();
+    $requestNotes->execute();
     /* ------------------------------------------------------------------------------ */
 
     /* --------------- Récupération des personnes qui notent les jeux ------------------ */
@@ -327,7 +327,7 @@
     $requestHaveNote->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
     $requestHaveNote->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
 
-    //$requestHaveNote->execute();
+    $requestHaveNote->execute();
     /* ------------------------------------------------------------------------------------ */
 
     /* ----------------------------- Insertion des points positifs et négatifs ---------------------------- */
@@ -353,7 +353,7 @@
     $requestPoints->bindValue(':avis1', $avis[0], PDO::PARAM_STR);
     $requestPoints->bindValue(':avis2', $avis[1], PDO::PARAM_STR);
 
-    //$requestPoints->execute();
+    $requestPoints->execute();
     /* ---------------------------------------------------------------------------------------------------- */
 
     /* ----------------------------- Insertion des médias ---------------------------- */
@@ -391,7 +391,7 @@
     $requestMedia->bindValue(':urlmedia2', $media2['URLMEDIA'], PDO::PARAM_STR);
     $requestMedia->bindValue(':altmedia2', $media2['ALTMEDIA'], PDO::PARAM_STR);
 
-    //$requestMedia->execute();
+    $requestMedia->execute();
     /* ---------------------------------------------------------------------------------------------------- */
 
     /* ----------------------------- Insertion des commentaires ---------------------------- */
@@ -466,7 +466,7 @@
     $requestComment->bindValue(':datecomment5', $comment5['DATE_COMMENT'], PDO::PARAM_STR);
 
 
-    //$requestComment->execute();
+    $requestComment->execute();
     /* ---------------------------------------------------------------------------------------------------- */
 
     /* ----------------------------- Insertion des configurations ---------------------------- */
@@ -513,10 +513,253 @@
     $requestConfiguration->bindValue(':direct2', $configuration2['DIRECTX'], PDO::PARAM_STR);
     $requestConfiguration->bindValue(':type2', $configuration2['TYPE_CONFIG'], PDO::PARAM_STR);
 
-    //$requestConfiguration->execute();
+    $requestConfiguration->execute();
     /* --------------------------------------------------------------------------------------- */
 
+    /* ----------------------------- Insertion des jeux similaires  ---------------------------- */
+    $listGames = array('GTA III','League of legends','Counter Strike');
+    $listURLS = array('www.gtaIII.fr','www.leagueoflegends.com','www.cs.fr');
 
+    $requestSimilarGame = $db->prepare('   INSERT INTO SIMILARGAME (LABELMEDIA,URLMEDIA)
+                                            VALUES(:labelmedia1,:urlmedia1),
+                                            (:labelmedia2,:urlmedia2),
+                                            (:labelmedia3,:urlmedia3)');
+
+    $requestSimilarGame->bindValue(':labelmedia1', $listGames[0], PDO::PARAM_STR);
+    $requestSimilarGame->bindValue(':labelmedia2', $listGames[1], PDO::PARAM_STR);
+    $requestSimilarGame->bindValue(':labelmedia3', $listGames[2], PDO::PARAM_STR);
+    $requestSimilarGame->bindValue(':urlmedia1', $listURLS[0], PDO::PARAM_STR);
+    $requestSimilarGame->bindValue(':urlmedia2', $listURLS[1], PDO::PARAM_STR);
+    $requestSimilarGame->bindValue(':urlmedia3', $listURLS[2], PDO::PARAM_STR);
+
+    $requestSimilarGame->execute();
+    /* ----------------------------------------------------------------------------------------- */
+
+    /* --------------- Récupération des identifiants des jeux similaires ------------------ */
+    $requestSimilarGameID = $db->query('SELECT IDSIMILARGAME FROM SIMILARGAME');
+    $resultSimilarGameID = $requestSimilarGameID->fetchAll(PDO::FETCH_ASSOC);
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ------------ Table HAVE_SIMILARGAME - Liaisons entre le IDPLATFORM et les jeux similaires ----------- */
+    $requestHaveSimilarGame = $db->prepare('   INSERT INTO HAVE_SIMILARGAME (IDSIMILARGAME,IDPLATFORMGAME)
+                                                            VALUES(:idsimilar1,:platformgame1),
+                                                            (:idsimilar2,:platformgame2),
+                                                            (:idsimilar1,:platformgame3)');
+
+    $requestHaveSimilarGame->bindValue(':idsimilar1', $resultSimilarGameID[0]['IDSIMILARGAME'], PDO::PARAM_INT);
+    $requestHaveSimilarGame->bindValue(':idsimilar2', $resultSimilarGameID[1]['IDSIMILARGAME'], PDO::PARAM_INT);
+    $requestHaveSimilarGame->bindValue(':idsimilar3', $resultSimilarGameID[2]['IDSIMILARGAME'], PDO::PARAM_INT);
+    $requestHaveSimilarGame->bindValue(':platformgame1', $resultPlatFormGameID[0]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveSimilarGame->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveSimilarGame->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
+
+    $requestHaveSimilarGame->execute();
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ----------------------------- Insertion des langues ---------------------------------- */
+    $languages = array('Francais','Anglais','Chinois','Russe','Vietnamien');
+
+    $requestLanguages = $db->prepare('   INSERT INTO LANGUAGE (LABELLANGUAGE)
+                                                                VALUES(:language1),
+                                                                        (:language2),
+                                                                        (:language3),
+                                                                        (:language4),
+                                                                        (:language5)');
+
+    $requestLanguages->bindValue(':language1', $languages[0], PDO::PARAM_STR);
+    $requestLanguages->bindValue(':language2', $languages[1], PDO::PARAM_STR);
+    $requestLanguages->bindValue(':language3', $languages[2], PDO::PARAM_STR);
+    $requestLanguages->bindValue(':language4', $languages[3], PDO::PARAM_STR);
+    $requestLanguages->bindValue(':language5', $languages[4], PDO::PARAM_STR);
+
+    $requestLanguages->execute();
+    /* -------------------------------------------------------------------------------------- */
+
+    /* --------------- Récupération des langues ------------------ */
+    $requestLanguagesID = $db->query('SELECT LABELLANGUAGE FROM LANGUAGE');
+    $resultLanguagesID = $requestLanguagesID->fetchAll(PDO::FETCH_ASSOC);
+    /* ----------------------------------------------------------- */
+
+    /* ------------ Table HAVE_SUBTITLE - Liaisons entre les sous titres et le jeu ----------- */
+    $requestHaveSubtitle = $db->prepare('   INSERT INTO HAVE_SUBTITLE (LABELLANGUAGE,IDPLATFORMGAME)
+                                                                VALUES(:language1,:platformgame1),
+                                                                      (:language2,:platformgame1),
+                                                                      (:language4,:platformgame1),
+                                                                      (:language5,:platformgame1),
+                                                                      (:language1,:platformgame2),
+                                                                      (:language2,:platformgame2),
+                                                                      (:language1,:platformgame3),
+                                                                      (:language3,:platformgame3),
+                                                                      (:language5,:platformgame3)');
+
+    $requestHaveSubtitle->bindValue(':language1', $resultLanguagesID[0]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveSubtitle->bindValue(':language2', $resultLanguagesID[1]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveSubtitle->bindValue(':language3', $resultLanguagesID[2]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveSubtitle->bindValue(':language4', $resultLanguagesID[3]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveSubtitle->bindValue(':language5', $resultLanguagesID[4]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveSubtitle->bindValue(':platformgame1', $resultPlatFormGameID[0]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveSubtitle->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveSubtitle->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
+
+    $requestHaveSubtitle->execute();
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ------------ Table HAVE_LANGUAGE - Liaisons entre les langues audio et le jeu ----------- */
+    $requestHaveLanguage = $db->prepare('   INSERT INTO HAVE_LANGUAGE (LABELLANGUAGE,IDPLATFORMGAME)
+                                                                    VALUES(:language1,:platformgame1),
+                                                                          (:language2,:platformgame1),
+                                                                          (:language4,:platformgame1),
+                                                                          (:language5,:platformgame1),
+                                                                          (:language1,:platformgame2),
+                                                                          (:language2,:platformgame2),
+                                                                          (:language1,:platformgame3),
+                                                                          (:language3,:platformgame3),
+                                                                          (:language5,:platformgame3)');
+
+    $requestHaveLanguage->bindValue(':language1', $resultLanguagesID[0]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveLanguage->bindValue(':language2', $resultLanguagesID[1]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveLanguage->bindValue(':language3', $resultLanguagesID[2]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveLanguage->bindValue(':language4', $resultLanguagesID[3]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveLanguage->bindValue(':language5', $resultLanguagesID[4]['LABELLANGUAGE'], PDO::PARAM_STR);
+    $requestHaveLanguage->bindValue(':platformgame1', $resultPlatFormGameID[0]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveLanguage->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHaveLanguage->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
+
+    $requestHaveLanguage->execute();
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ----------------------------- Insertion des vendeurs ---------------------------------- */
+    $sellers = array('nicolas','clement','fabio','guillaume','haithem');
+    $stateGame = array('neuf','occasion');
+
+    $requestSellers = $db->prepare('   INSERT INTO SELLER (SELLER,TYPEMEDIA)
+                                                                    VALUES(:seller1,:state1),
+                                                                            (:seller2,:state2),
+                                                                            (:seller3,:state1),
+                                                                            (:seller4,:state2),
+                                                                            (:seller5,:state1)');
+
+    $requestSellers->bindValue(':state1', $stateGame[0], PDO::PARAM_STR);
+    $requestSellers->bindValue(':state2', $stateGame[1], PDO::PARAM_STR);
+    $requestSellers->bindValue(':seller1', $sellers[0], PDO::PARAM_STR);
+    $requestSellers->bindValue(':seller2', $sellers[1], PDO::PARAM_STR);
+    $requestSellers->bindValue(':seller3', $sellers[2], PDO::PARAM_STR);
+    $requestSellers->bindValue(':seller4', $sellers[3], PDO::PARAM_STR);
+    $requestSellers->bindValue(':seller5', $sellers[4], PDO::PARAM_STR);
+
+    $requestSellers->execute();
+    /* -------------------------------------------------------------------------------------- */
+
+    /* --------------- Récupération des identifiants des sellers ------------------ */
+    $requestSellerID = $db->query('SELECT IDPRICE FROM SELLER');
+    $resultSellerID = $requestSellerID->fetchAll(PDO::FETCH_ASSOC);
+    /* ----------------------------------------------------------- */
+
+    /* ------------ Table HAVE_PRICE - Liaisons entre les vendeurs et le PLATFORMGAMEID ----------- */
+    $listPrices = array('20','30','40','50','60');
+    $tabCurrency = array('euros','dollars','livres');
+
+    $requestHavePrice = $db->prepare('   INSERT INTO HAVE_PRICE (IDPRICE,IDPLATFORMGAME,PRICE,CURRENCY)
+                                                                        VALUES(:idprice1,:platformgame1,:price1,:currency1),
+                                                                              (:idprice2,:platformgame1,:price2,:currency1),
+                                                                              (:idprice4,:platformgame1,:price4,:currency1),
+                                                                              (:idprice5,:platformgame1,:price5,:currency1),
+                                                                              (:idprice1,:platformgame2,:price1,:currency2),
+                                                                              (:idprice2,:platformgame2,:price2,:currency2),
+                                                                              (:idprice1,:platformgame3,:price1,:currency3),
+                                                                              (:idprice3,:platformgame3,:price3,:currency3),
+                                                                              (:idprice5,:platformgame3,:price5,:currency3) ');
+
+    $requestHavePrice->bindValue(':idprice1', $resultSellerID[0]['IDPRICE'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':idprice2', $resultSellerID[1]['IDPRICE'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':idprice3', $resultSellerID[2]['IDPRICE'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':idprice4', $resultSellerID[3]['IDPRICE'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':idprice5', $resultSellerID[4]['IDPRICE'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':platformgame1', $resultPlatFormGameID[0]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestHavePrice->bindValue(':price1', $listPrices[0], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':price2', $listPrices[1], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':price3', $listPrices[2], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':price4', $listPrices[3], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':price5', $listPrices[4], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':currency1', $tabCurrency[0], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':currency2', $tabCurrency[1], PDO::PARAM_STR);
+    $requestHavePrice->bindValue(':currency3', $tabCurrency[2], PDO::PARAM_STR);
+
+    $requestHavePrice->execute();
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ------------ Table Tricks - Liaisons entre les astuces et le PLATFORMGAMEID ----------- */
+    $tabTricks = array('astuce1','astuce2','astuce3','astuce4','astuce5','astuce6');
+
+    $requestTricks = $db->prepare('   INSERT INTO TRICK (IDPLATFORMGAME, LABELMEDIA)
+                                    VALUES(:platformgame1,:trick1),
+                                          (:platformgame1,:trick2),
+                                          (:platformgame2,:trick3),
+                                          (:platformgame2,:trick4),
+                                          (:platformgame3,:trick5),
+                                          (:platformgame3,:trick6)');
+
+    $requestTricks->bindValue(':trick1', $tabTricks[0], PDO::PARAM_STR);
+    $requestTricks->bindValue(':trick2', $tabTricks[1], PDO::PARAM_STR);
+    $requestTricks->bindValue(':trick3', $tabTricks[2], PDO::PARAM_STR);
+    $requestTricks->bindValue(':trick4', $tabTricks[3], PDO::PARAM_STR);
+    $requestTricks->bindValue(':trick5', $tabTricks[4], PDO::PARAM_STR);
+    $requestTricks->bindValue(':trick6', $tabTricks[5], PDO::PARAM_STR);
+    $requestTricks->bindValue(':platformgame1', $resultPlatFormGameID[0]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestTricks->bindValue(':platformgame2', $resultPlatFormGameID[1]['IDPLATFORMGAME'], PDO::PARAM_INT);
+    $requestTricks->bindValue(':platformgame3', $resultPlatFormGameID[2]['IDPLATFORMGAME'], PDO::PARAM_INT);
+
+    $requestTricks->execute();
+    /* ------------------------------------------------------------------------------------ */
+
+    /* ----------------------------- Insertion des rôles ---------------------------------- */
+    $roles = array('Adminstrateur','Abonné');
+
+    $requestRoles = $db->prepare('   INSERT INTO ROLE (NAMEROLE)
+                                        VALUES(:role1),
+                                                (:role2)');
+
+    $requestRoles->bindValue(':role1', $roles[0], PDO::PARAM_STR);
+    $requestRoles->bindValue(':role2', $roles[1], PDO::PARAM_STR);
+
+    $requestRoles->execute();
+    /* -------------------------------------------------------------------------------------- */
+
+    /* --------------- Récupération des roles ------------------ */
+    $requestRolesID = $db->query('SELECT IDROLE FROM ROLE');
+    $resultRoleID = $requestRolesID->fetchAll(PDO::FETCH_ASSOC);
+    /* ----------------------------------------------------------- */
+
+    /* ----------------------------- Insertion des users ---------------------------------- */
+    $user1 = array(
+        'MAILUSER' => 'nicolas.framery@gmail.com',
+        'PUBLICKEY' => 'cle1',
+        'HOST' => 'host1'
+    );
+
+    $user2 = array(
+        'MAILUSER' => 'nicolas.framery22222@gmail.com',
+        'PUBLICKEY' => 'cle2',
+        'HOST' => 'host2'
+    );
+
+    $requestUsers = $db->prepare('   INSERT INTO USER (IDROLE,MAILUSER,PUBLICKEY,HOST)
+                                    VALUES(:role1,:mail1,:key1,:host1),
+                                          (:role2,:mail2,:key2,:host2)');
+
+    $requestUsers->bindValue(':role1', $resultRoleID[0]['IDROLE'], PDO::PARAM_INT);
+    $requestUsers->bindValue(':role2', $resultRoleID[1]['IDROLE'], PDO::PARAM_INT);
+    $requestUsers->bindValue(':mail1', $user1['MAILUSER'], PDO::PARAM_STR);
+    $requestUsers->bindValue(':mail2', $user2['MAILUSER'], PDO::PARAM_STR);
+    $requestUsers->bindValue(':key1',  $user1['PUBLICKEY'], PDO::PARAM_STR);
+    $requestUsers->bindValue(':key2', $user2['PUBLICKEY'], PDO::PARAM_STR);
+    $requestUsers->bindValue(':host1', $user1['HOST'], PDO::PARAM_STR);
+    $requestUsers->bindValue(':host2', $user2['HOST'], PDO::PARAM_STR);
+
+    $requestUsers->execute();
+    /* -------------------------------------------------------------------------------------- */
 
     /*$request = $db->query('SELECT * FROM GAME');
     $result = $request->fetchAll(PDO::FETCH_ASSOC);
