@@ -122,6 +122,7 @@ function videoGamesXML($stmt, $db) {
 	
 	// Create a node game
 	    $game = $games->addChild('jeu');
+        $game->addAttribute('id', $row['IDGAME']);
 	    // Add in game node title element
 	    $game->addChild('titre', $row['TITLE']);
 
