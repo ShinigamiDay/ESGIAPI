@@ -339,16 +339,21 @@ function videoGamesXML($stmt, $db) {
             $subtitles = $languages->addChild('sousTitres');
 
 	    	foreach ($subtitlesDB as $subtitleDB) {
-	    		$subtitles->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);	    	}
+
+	    		$subtitles->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);
+	    	}
 
 	    	// Languages database
 	    	$q = $db->prepare(
 				'SELECT * FROM TRICK AS tk WHERE tk.IDPLATFORMGAME=:id');
 			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
 			$q->execute();
+
 			$tricksDB = $q->fetchAll();
+
 	    	// Tips node
 	    	$tips = $platform->addChild('astuces');
+
 	    	foreach ($tricksDB as $trickDB) {
 	    		$tips->addChild('astuce', $trickDB['LABELMEDIA']);
 	    	}
@@ -359,14 +364,15 @@ function videoGamesXML($stmt, $db) {
 				LEFT JOIN SIMILARGAME sg ON hsg.IDSIMILARGAME = sg.IDSIMILARGAME WHERE IDPLATFORMGAME=:id');
 			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
 			$q->execute();
+
 			$similarsDB = $q->fetchAll();
 	    	// Similar game node
 	    	$similarGames = $platform->addChild('jeuxSimilaires');
 	    	foreach ($similarsDB as $similarGameDB) {
-	    		$tip = $tips->addChild('jeuSimilaire');
+                $similarGames = $similarGames->addChild('jeuSimilaire');
 
-	    		$tip->addChild('libelleJeu', $similarGameDB['LABELMEDIA']);
-	    		$tip->addChild('urlJeu', $similarGameDB['URLMEDIA']);
+                $similarGames->addChild('libelleJeu', $similarGameDB['LABELMEDIA']);
+                $similarGames->addChild('urlJeu', $similarGameDB['URLMEDIA']);
 
 
 	    	}

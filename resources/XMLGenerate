@@ -1,4 +1,3 @@
-This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <jeuxVideo>
     <jeu>
         <titre>Watch Dogs</titre>
@@ -96,12 +95,13 @@ This XML file does not appear to have any style information associated with it. 
                 <astuces>
                     <astuce>astuce1</astuce>
                     <astuce>astuce2</astuce>
+                </astuces>
+                <jeuxSimilaires>
                     <jeuSimilaire>
                         <libelleJeu>GTA III</libelleJeu>
                         <urlJeu>www.gtaIII.fr</urlJeu>
                     </jeuSimilaire>
-                </astuces>
-                <jeuxSimilaires/>
+                </jeuxSimilaires>
             </plateforme>
             <plateforme type="PS3">
                 <resume>description2</resume>
@@ -162,12 +162,13 @@ This XML file does not appear to have any style information associated with it. 
                 <astuces>
                     <astuce>astuce3</astuce>
                     <astuce>astuce4</astuce>
+                </astuces>
+                <jeuxSimilaires>
                     <jeuSimilaire>
                         <libelleJeu>League of legends</libelleJeu>
                         <urlJeu>www.leagueoflegends.com</urlJeu>
                     </jeuSimilaire>
-                </astuces>
-                <jeuxSimilaires/>
+                </jeuxSimilaires>
             </plateforme>
             <plateforme type="PS4">
                 <resume>description3</resume>
@@ -211,12 +212,13 @@ This XML file does not appear to have any style information associated with it. 
                 <astuces>
                     <astuce>astuce5</astuce>
                     <astuce>astuce6</astuce>
+                </astuces>
+                <jeuxSimilaires>
                     <jeuSimilaire>
                         <libelleJeu>GTA III</libelleJeu>
                         <urlJeu>www.gtaIII.fr</urlJeu>
                     </jeuSimilaire>
-                </astuces>
-                <jeuxSimilaires/>
+                </jeuxSimilaires>
             </plateforme>
         </plateformes>
     </jeu>
