@@ -3,14 +3,14 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
     <!-- On définit deux valeurs pour l'élément socialLinks (c'est tout en bas ...)  -->
-    <xsd:simpleType name="rs">
+    <!--<xsd:simpleType name="rs">
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="Facebook" />
             <xsd:enumeration value="Twitter" />
         </xsd:restriction>
-    </xsd:simpleType>
+    </xsd:simpleType>-->
 
-    <xsd:element name="socialLink">
+    <!--<xsd:element name="socialLink">
         <xsd:complexType>
             <xsd:simpleContent>
                 <xsd:extension base="xsd:anyURI" >
@@ -18,7 +18,7 @@
                 </xsd:extension>
             </xsd:simpleContent>
         </xsd:complexType>
-    </xsd:element>
+    </xsd:element>-->
 
     <xsd:element name="jeuSimilaire">
         <xsd:complexType>
@@ -44,6 +44,7 @@
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>
+
     <xsd:element name="configurationPc">
         <xsd:complexType>
             <xsd:sequence>
@@ -282,16 +283,14 @@
                                 </xsd:complexType>
                             </xsd:element>
 
-
-
                             <!-- Liens sociaux du jeu (Facebook ou Twitter)  -->
-                            <xsd:element name="socialLinks">
+                            <!--<xsd:element name="socialLinks">
                                 <xsd:complexType>
                                     <xsd:sequence>
                                         <xsd:element ref="socialLink" maxOccurs="unbounded"/>
                                     </xsd:sequence>
                                 </xsd:complexType>
-                            </xsd:element>
+                            </xsd:element>-->
                         </xsd:sequence>
 
                     </xsd:complexType>
