@@ -215,7 +215,7 @@ function videoGamesXML($stmt, $db) {
 			$q->execute();
 			$pricesDB = $q->fetchAll();
 	    // Create node prices containes multiple price
-	    	$prices = $platform->addChild('prix');
+	    	$prices = $platform->addChild('prices');
 
 	    	foreach ($pricesDB as $priceDB) {
 	    		$price = $prices->addChild('price', $priceDB['PRICE']);
@@ -251,8 +251,8 @@ function videoGamesXML($stmt, $db) {
 	    // Create points node
 	    	$points = $platform->addChild('points');
 	    	foreach ($pointsDB as $pointDB) {
-	    		$point = $points->addChild('point', $pointDB['POINT']);
-	    		$point->addAttribute('type', $pointDB['TYPEMEDIA']);
+	    		$point = $points->addChild('point', $pointDB['TYPEMEDIA']);
+	    		$point->addAttribute('type', $pointDB['POINT']);
 	    	}
 
 	    // Medias database
@@ -321,13 +321,12 @@ function videoGamesXML($stmt, $db) {
 			$langsDB = $q->fetchAll();
 	    // Create lang nodes
 	    	$languages = $platform->addChild('langues');
-	    	foreach ($langsDB as $langDB) {
 
-	    		// Audios
-	    		$audios = $languages->addChild('audios');
+            // Audios
+            $audios = $languages->addChild('audios');
+
+	    	foreach ($langsDB as $langDB) {
 	    		$audios->addChild('audio', $langDB['LABELLANGUAGE']);
-	    		
-	    		
 	    	}
 
 	    	$q = $db->prepare(
@@ -335,12 +334,12 @@ function videoGamesXML($stmt, $db) {
 			$q->bindValue(':id', $platformDB['IDPLATFORMGAME'], PDO::PARAM_INT);
 			$q->execute();
 			$subtitlesDB = $q->fetchAll();
+
+            // Subtitles
+            $subtitles = $languages->addChild('sousTitres');
+
 	    	foreach ($subtitlesDB as $subtitleDB) {
-	    		// Subtitles
-	    		// 
-	    		$subtitles = $languages->addChild('sousTitres');
-	    		$subtitles->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);
-	    	}
+	    		$subtitles->addChild('sousTitre', $subtitleDB['LABELLANGUAGE']);	    	}
 
 	    	// Languages database
 	    	$q = $db->prepare(
