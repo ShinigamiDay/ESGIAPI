@@ -9,13 +9,15 @@ $games = $gameManager->fetchAllGames();
 
 // Build Xml with all games.
 videoGamesXML($games, $gameManager);
+// Build JSON with all games.
+videoGamesJSON($games, $gameManager);
 
 function videoGamesXML($stmt, $gameManager) {
 
 // Racine Element XML
 	$games = new SimpleXMLElement("<jeuxVideo></jeuxVideo>");
 	$platformManager = new PlatformManager();
-	
+
 	// For each video games ...
 	foreach ($stmt as $row) {
 	// Get Data
@@ -23,7 +25,7 @@ function videoGamesXML($stmt, $gameManager) {
 	
 	// Create a node game
 	    $game = $games->addChild('jeu');
-        $game->addAttribute('id', $row['IDGAME']);
+        $game->addAttribute('id', $idGame);
 	    // Add in game node title element
 	    $game->addChild('titre', $row['TITLE']);
 
@@ -214,4 +216,233 @@ function videoGamesXML($stmt, $gameManager) {
 	//echo $games->saveXML(); // asXML()
 	Header('Content-type: text/xml');
 	echo $games->asXML();
+}
+
+// --------------------- JSON ------------------
+function videoGamesJSON($stmt, $gameManager) {
+
+// Racine Element XML
+	$platformManager = new PlatformManager();
+	
+	// For each video games ...
+	foreach ($stmt as $row) {
+	// Get Data
+		$idGame = $row['IDGAME'];
+	
+	// Create a node game
+	    $game[] = [
+	    	'id' => $idGame,
+	    	'titre', $row['TITLE']
+	    ];
+
+	    // Companies database
+		$companiesDB = $gameManager->fetchCompanies($idGame);
+	    // For each company, create a node company with an attribute activite
+	    $companiesArr = array();
+	    foreach ($companiesDB as $companyDB) {
+	    	$companiesArr[] = [
+	    		'societe' => $companyDB['NAMECOMPANY'],
+	    		'activite' => $companyDB['ACTIVITYCOMPANY']
+	    	];
+	    }
+
+	    $companies = ['societes' => $companiesArr];
+	    array_push($game, $companies);
+
+	    // Genres database
+		$genresDB = $gameManager->fetchGenres($idGame);
+	    $genreArr = array();
+	    foreach ($genresDB as $genreDB) {
+	    	$genreArr[] = ['genre' => $genreDB['NAMETYPE']];
+	    }
+	    $genres = ['genres' => $genreArr];
+	    array_push($game, $genres);
+	    
+	    // Links Database
+		$linksDB = $gameManager->fetchLinks($idGame);
+	    $linkArr = array();
+	    foreach ($linksDB as $linkDB) {
+	    	$linkArr[] = [
+	    		'lien' => $linkDB['CONTENTLINK'],
+	    		'type' => $linkDB['NAMETYPELINK']
+	    	];
+	    }
+	    $links = ['liens' => $linkArr];
+	    array_push($game, $links);
+
+	    // Modes database
+		$modesDatabase = $gameManager->fetchModes($idGame);
+	    $modeArr = array();
+	    foreach ($modesDatabase as $modesDB) {
+	    	$modeArr[] = ['modeJeu' => $modesDB['NAMEGAMEMODE']];
+	    }
+	    $modes = ['modesJeu' => $modeArr];
+	    array_push($game, $modes);
+
+	    // Description node in game node
+	    $game[] = ['description' => $row['DESCRIPTION']]; 
+
+	    // Platforms database
+		$platformsDB = $gameManager->fetchPlatforms($idGame);
+		$platformArr = array();
+	    // Plateformes in game node
+	    foreach ($platformsDB as $platformDB) {
+	    	// Id platform.
+	    	$idPlatform = $platformDB['IDPLATFORMGAME'];
+
+	    	$platformArr[] = [
+	    		'type' => $platformDB['NAMEPLATFORM'],
+	    		'resume' => $platformDB['DESCRIPTION'],
+	    		'dateSortie' => $platformDB['EXIT_DATE']
+	    	];
+
+	    // Prices database
+			$pricesDB = $platformManager->fetchPrices($idPlatform);
+	    	$priceArr = array();
+	    	foreach ($pricesDB as $priceDB) {
+	    		$priceArr[] = [
+		    		'price' =>
+		    			[
+		    				'price' => $priceDB['PRICE'],
+			    			'vendeur' => $priceDB['SELLER'],
+			    			'type' => $priceDB['TYPEMEDIA'],
+			    			'devise' => $priceDB['CURRENCY']
+		    			]
+	    		];
+	    	}
+	    	$prices = ['prices' => $priceArr];
+	    	array_push($platformArr, $prices);
+
+	    // Notes database
+			$notesDB = $platformManager->fetchNotes($idPlatform);
+		// Create node notes containes multiple note
+	    	$scoreArr = array();
+	    	foreach ($notesDB as $scoreDB) {
+	    		$scoreArr[] = [
+		    		'notation' => $scoreDB['NOTE'],
+			    	'source', $scoreDB['SOURCE']
+	    		];
+	    	}
+	    	$notes = ['notes' => $scoreArr];
+	    	array_push($platformArr, $notes);
+
+	    // Create pegi node
+	    	$platformArr[] = ['pegi' => $platformDB['PEGI']];
+
+	    // Points database
+			$pointsDB = $platformManager->fetchPoints($idPlatform);
+	    // Create points node
+	    	$pointArr = array();
+	    	foreach ($pointsDB as $pointDB) {
+	    		$pointArr[] = [
+	    			'point' => $pointDB['TYPEMEDIA'],
+	    			'type' => $pointDB['POINT']
+	    		];
+	    	}
+	    	$points = ['points' => $pointArr];
+	    	array_push($platformArr, $points);
+
+	    // Medias database
+			$mediasDB = $platformManager->fetchMedias($idPlatform);
+	    // Create Medias nodes
+	    	$mediaArr = array();
+	    	foreach ($mediasDB as $mediaDB) {
+	    		$mediaArr[] = [
+	    			'type' => $mediaDB['TYPEMEDIA'],
+	    			'cible' => $mediaDB['TARGETMEDIA'],
+	    			'libelle' => $mediaDB['LABELMEDIA'],
+	    			'url' => $mediaDB['URLMEDIA'],
+	    			'alt' => $mediaDB['ALTMEDIA']
+	    		];
+	    	}
+	    	$medias = ['medias' => $mediaArr];
+	    	array_push($platformArr, $medias);
+
+	    // Comments database
+			$commentsDB = $platformManager->fetchComments($idPlatform);
+	    // Create Comments nodes
+	    	$commentArr = array();
+	    	foreach ($commentsDB as $commentaireDB) {
+	    		$commentArr[] = [
+	    			'auteur' => $commentaireDB['AUTHOR'],
+	    			'date' => $commentaireDB['DATE_COMMENT'],
+					'note' => $commentaireDB['NOTE'],
+					'contenu' => $commentaireDB['CONTENT']
+	    		];
+	    	}
+	    	$commentaires = ['commentaires' => $commentArr];
+	    	array_push($platformArr, $commentaires);
+
+	    // Configurations database
+			$configsDB = $platformManager->fetchConfigurations($idPlatform);
+	    	$configArr = array();
+	    	foreach ($configsDB as $configDB) {
+	    		$configArr[] = [
+	    			'type', $configDB['TYPE_CONFIG'],
+	    			'systeme', $configDB['SYSTEM'],
+					'ram', $configDB['RAM'],
+					'disqueDur', $configDB['DISK'],
+					'gpu', $configDB['GPU'],
+					'connexion', $configDB['CONNECTIONCONFIG'],
+					'directX', $configDB['DIRECTX']
+	    		];
+	    	}
+	    	$config = ['configurationsPc' => $configArr];
+	    	array_push($platformArr, $config);
+
+	    // Languages database
+			$langsDB = $platformManager->fetchLanguages($idPlatform);
+	    // Create lang nodes
+	    	$langArr = array();
+            // Audios
+            $audioArr = array();
+	    	foreach ($langsDB as $langDB) {
+	    		$audioArr[] = ['audio' => $langDB['LABELLANGUAGE']];
+	    	}
+	    	$audios = ['audios' => $audioArr];
+	    	array_push($langArr, $audios);
+
+	    	// Subtitles Database.
+			$subtitlesDB = $platformManager->fetchSubtitles($idPlatform);
+            // Subtitles
+            $subtitleArr = array();
+	    	foreach ($subtitlesDB as $subtitleDB) {
+	    		$subtitleArr[] = ['sousTitre' => $subtitleDB['LABELLANGUAGE']];
+	    	}
+	    	$subtitles = ['sousTitres' => $subtitleArr];
+	    	array_push($langArr, $subtitles);
+
+	    	array_push($platformArr, ['langues' => $langArr]);
+
+	    	// Trick database
+			$tricksDB = $platformManager->fetchTricks($idPlatform);
+	    	// Tips node
+	    	$tipArr = array();
+	    	foreach ($tricksDB as $trickDB) {
+	    		$tipArr[] = ['astuce' => $trickDB['LABELMEDIA']];
+	    	}
+	    	$tips = ['astuces' => $tipArr];
+	    	array_push($platformArr, $tips);
+
+	    	// Similars database
+			$similarsDB = $platformManager->fetchSimilarGames($idPlatform);
+	    	$similarGamesArr = array();
+	    	foreach ($similarsDB as $similarGameDB) {
+                $similarGamesArr[] = [
+                	'libelleJeu' => $similarGameDB['LABELMEDIA'],
+					'urlJeu' => $similarGameDB['URLMEDIA']
+                ];
+	    	}
+	    	$similarGames = ['jeuxSimilaires' => $similarGamesArr];
+	    	array_push($platformArr, $similarGames);
+	    		    	
+	    } // End 
+
+	    array_push($game, $platformArr);
+
+	}
+
+	$games = ["jeuxVideo" => $game];
+
+	echo json_encode($games);
 }
