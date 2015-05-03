@@ -1,0 +1,225 @@
+<jeuxVideo>
+    <jeu id="1">
+        <titre>Watch Dogs</titre>
+        <societes>
+            <societe activite="DÃ©veloppeur">Ubisoft</societe>
+            <societe activite="Editeur">Atari</societe>
+        </societes>
+        <genres>
+            <genre>MOBA</genre>
+            <genre>RPG</genre>
+            <genre>Fantasy</genre>
+            <genre>FTS</genre>
+        </genres>
+        <liens>
+            <lien type="Facebook">www.facebook.com</lien>
+            <lien type="Twitter">www.twitter.com</lien>
+            <lien type="Site officiel">www.siteofficiel.fr</lien>
+            <lien type="Site non officiel">www.sitenonofficiel.fr</lien>
+        </liens>
+        <modesJeu>
+            <modeJeu>Solo</modeJeu>
+            <modeJeu>Multijoueurs</modeJeu>
+            <modeJeu>Arcade</modeJeu>
+            <modeJeu>Simulation</modeJeu>
+        </modesJeu>
+        <description>
+            Watch Dogs est un jeu d'action Ã  la troisiÃ¨me personne sur PS4.
+            Dans un univers moderne et ouvert oÃ¹ tout est connectÃ© Ã  un systÃ¨me de contrÃ´le central appartenant Ã  des sociÃ©tÃ©s privÃ©es,
+            le joueur incarne un groupe de hackeurs et d'assassins capables de manipuler et de pirater les systÃ¨mes Ã©lectroniques.
+        </description>
+        <plateformes>
+            <plateforme type="PS2">
+                <resume>description1</resume>
+                <dateSortie>2012-02-23</dateSortie>
+                <prices>
+                    <price vendeur="nicolas" type="neuf" devise="euros">20</price>
+                    <price vendeur="clement" type="occasion" devise="euros">30</price>
+                    <price vendeur="guillaume" type="occasion" devise="euros">50</price>
+                    <price vendeur="haithem" type="neuf" devise="euros">60</price>
+                </prices>
+                <notes>
+                    <notation source="www.jeuxvideos.com">15.0</notation>
+                </notes>
+                <pegi>18</pegi>
+                <points>
+                    <point type="positif">Gratuit</point>
+                    <point type="negatif">Multijoueurs</point>
+                    <point type="negatif">AccÃ¨s uniquement en ligne</point>
+                </points>
+                <medias>
+                    <media type="image" cible="cover">
+                        <libelle>Couverture</libelle>
+                        <url>https://www.google.fr</url>
+                        <alt>imageDuMedia1</alt>
+                    </media>
+                </medias>
+                <commentaires>
+                    <commentaire>
+                        <auteur>nicolas</auteur>
+                        <date>2015-03-01 00:00:00</date>
+                        <note>15.5</note>
+                        <contenu>c'est plutÃ´t bien rÃ©ussi !</contenu>
+                    </commentaire>
+                    <commentaire>
+                        <auteur>haithem</auteur>
+                        <date>2015-05-04 00:00:00</date>
+                        <note>5.5</note>
+                        <contenu>Nul, archi nul ...</contenu>
+                    </commentaire>
+                </commentaires>
+                <configurationsPc>
+                    <configurationPC type="Minimum">
+                        <systeme>Windows 7</systeme>
+                        <ram>4GO</ram>
+                        <disqueDur>512MO</disqueDur>
+                        <gpu>GeForce GTX 980</gpu>
+                        <connexion>Configuration1</connexion>
+                        <directX>10</directX>
+                    </configurationPC>
+                </configurationsPc>
+                <langues>
+                    <audios>
+                        <audio>Anglais</audio>
+                        <audio>Chinois</audio>
+                        <audio>Russe</audio>
+                        <audio>Vietnamien</audio>
+                    </audios>
+                    <sousTitres>
+                        <sousTitre>Anglais</sousTitre>
+                        <sousTitre>Chinois</sousTitre>
+                        <sousTitre>Russe</sousTitre>
+                        <sousTitre>Vietnamien</sousTitre>
+                    </sousTitres>
+                </langues>
+                <astuces>
+                    <astuce>astuce1</astuce>
+                    <astuce>astuce2</astuce>
+                </astuces>
+                <jeuxSimilaires>
+                    <jeuSimilaire>
+                        <libelleJeu>GTA III</libelleJeu>
+                        <urlJeu>www.gtaIII.fr</urlJeu>
+                    </jeuSimilaire>
+                </jeuxSimilaires>
+            </plateforme>
+            <plateforme type="PS3">
+                <resume>description2</resume>
+                <dateSortie>2013-05-12</dateSortie>
+                <prices>
+                    <price vendeur="nicolas" type="neuf" devise="dollars">20</price>
+                    <price vendeur="clement" type="occasion" devise="dollars">30</price>
+                </prices>
+                <notes>
+                    <notation source="www.gamekult.com">16.5</notation>
+                </notes>
+                <pegi>16</pegi>
+                <points>
+                    <point type="negatif">Multijoueurs</point>
+                    <point type="positif">Options payantes</point>
+                </points>
+                <medias>
+                    <media type="video" cible="cover">
+                        <libelle>Couverture</libelle>
+                        <url>https://www.media.com</url>
+                        <alt>videoDuMedia2</alt>
+                    </media>
+                </medias>
+                <commentaires>
+                    <commentaire>
+                        <auteur>fabio</auteur>
+                        <date>2015-03-02 00:00:00</date>
+                        <note>11.0</note>
+                        <contenu>Javament pas terrible</contenu>
+                    </commentaire>
+                    <commentaire>
+                        <auteur>equipe</auteur>
+                        <date>2015-06-10 00:00:00</date>
+                        <note>12.0</note>
+                        <contenu>on s'attendait Ã  mieux</contenu>
+                    </commentaire>
+                </commentaires>
+                <configurationsPc>
+                    <configurationPC type="ConseillÃ©">
+                        <systeme>Windows 8</systeme>
+                        <ram>8GO</ram>
+                        <disqueDur>1TO</disqueDur>
+                        <gpu>Quadro K6000</gpu>
+                        <connexion>Configuration2</connexion>
+                        <directX>11</directX>
+                    </configurationPC>
+                </configurationsPc>
+                <langues>
+                    <audios>
+                        <audio>Anglais</audio>
+                        <audio>Chinois</audio>
+                    </audios>
+                    <sousTitres>
+                        <sousTitre>Anglais</sousTitre>
+                        <sousTitre>Chinois</sousTitre>
+                    </sousTitres>
+                </langues>
+                <astuces>
+                    <astuce>astuce3</astuce>
+                    <astuce>astuce4</astuce>
+                </astuces>
+                <jeuxSimilaires>
+                    <jeuSimilaire>
+                        <libelleJeu>League of legends</libelleJeu>
+                        <urlJeu>www.leagueoflegends.com</urlJeu>
+                    </jeuSimilaire>
+                </jeuxSimilaires>
+            </plateforme>
+            <plateforme type="PS4">
+                <resume>description3</resume>
+                <dateSortie>2014-11-13</dateSortie>
+                <prices>
+                    <price vendeur="nicolas" type="neuf" devise="livres">20</price>
+                    <price vendeur="fabio" type="neuf" devise="livres">40</price>
+                    <price vendeur="haithem" type="neuf" devise="livres">60</price>
+                </prices>
+                <notes>
+                    <notation source="www.jeuxvideos.com">14.5</notation>
+                    <notation source="www.gamekult.com">15.5</notation>
+                </notes>
+                <pegi>12</pegi>
+                <points>
+                    <point type="positif">Facile Ã  prendre ne main</point>
+                    <point type="negatif">Gratuit</point>
+                </points>
+                <medias/>
+                <commentaires>
+                    <commentaire>
+                        <auteur>baway</auteur>
+                        <date>2015-04-03 00:00:00</date>
+                        <note>14.0</note>
+                        <contenu>Nice baway !</contenu>
+                    </commentaire>
+                </commentaires>
+                <configurationsPc/>
+                <langues>
+                    <audios>
+                        <audio>Anglais</audio>
+                        <audio>Francais</audio>
+                        <audio>Vietnamien</audio>
+                    </audios>
+                    <sousTitres>
+                        <sousTitre>Anglais</sousTitre>
+                        <sousTitre>Francais</sousTitre>
+                        <sousTitre>Vietnamien</sousTitre>
+                    </sousTitres>
+                </langues>
+                <astuces>
+                    <astuce>astuce5</astuce>
+                    <astuce>astuce6</astuce>
+                </astuces>
+                <jeuxSimilaires>
+                    <jeuSimilaire>
+                        <libelleJeu>GTA III</libelleJeu>
+                        <urlJeu>www.gtaIII.fr</urlJeu>
+                    </jeuSimilaire>
+                </jeuxSimilaires>
+            </plateforme>
+        </plateformes>
+    </jeu>
+</jeuxVideo>
