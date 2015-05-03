@@ -8,9 +8,9 @@ $gameManager = new GameManager();
 $games = $gameManager->fetchAllGames();
 
 // Build Xml with all games.
-videoGamesXML($games, $gameManager);
+videoGamesXML($games, $gameManager); 
 // Build JSON with all games.
-videoGamesJSON($games, $gameManager);
+//videoGamesJSON($games, $gameManager); // Uncomment if you want json datas and comment videoGamesXML
 
 function videoGamesXML($stmt, $gameManager) {
 
