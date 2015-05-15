@@ -18,6 +18,11 @@ Class blogController Extends baseController {
         $this->registry->template->show('add');
     }
 
+    public function update() {
+        $this->registry->template->welcome="page update";
+        $this->registry->template->show('update');
+    }
+
     public function delete() {
         $this->registry->template->welcome="page delete";
         $this->registry->template->show('delete');
